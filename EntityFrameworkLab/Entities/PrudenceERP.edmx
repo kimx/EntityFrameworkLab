@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PrudenceERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PrudenceERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="GRP_BS_SEQ">
           <Key>
             <PropertyRef Name="TABLE_NA" />
@@ -199,6 +199,20 @@
           <Property Name="IS_MENU" Type="varchar" MaxLength="1" />
           <Property Name="UP_DIRNO" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="ENABLED" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="SYSPROFILE">
+          <Key>
+            <PropertyRef Name="USER_NO" />
+            <PropertyRef Name="PRG_AREA" />
+            <PropertyRef Name="MVC_CTRL" />
+            <PropertyRef Name="PF_KEY" />
+          </Key>
+          <Property Name="USER_NO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="PRG_AREA" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="MVC_CTRL" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="PF_KEY" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="PF_VALUE" Type="nvarchar" MaxLength="4000" />
+          <Property Name="MOD_UTC" Type="datetime" />
         </EntityType>
         <EntityType Name="SYSROLE">
           <Key>
@@ -612,6 +626,7 @@
           <EntitySet Name="SYSDEPT" EntityType="Self.SYSDEPT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYSPACK" EntityType="Self.SYSPACK" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYSPRG" EntityType="Self.SYSPRG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSPROFILE" EntityType="Self.SYSPROFILE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYSROLE" EntityType="Self.SYSROLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYSROLE_FUN" EntityType="Self.SYSROLE_FUN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYSROLE_USERS" EntityType="Self.SYSROLE_USERS" Schema="dbo" store:Type="Tables" />
@@ -712,8 +727,7 @@
             <End Role="SYSROLE_USERS" EntitySet="SYSROLE_USERS" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PrudenceERPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1212,7 +1226,7 @@
             <Parameter Name="CRT_USER" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GRP_GetPrintLabels" ReturnType="Collection(PrudenceERPModel.GRP_GetPrintLabels_Result)">
-            <Parameter Name="USER_NO" Mode="In" Type="String" />
+          <Parameter Name="USER_NO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GRP_GetSerialNo">
             <Parameter Name="TABLE_NA" Mode="In" Type="String" />
@@ -1229,7 +1243,7 @@
             <Parameter Name="NEW_SEQ" Mode="InOut" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="GRP_GetShippingItems" ReturnType="Collection(PrudenceERPModel.GRP_GetShippingItems_Result)">
-            <Parameter Name="SPM_ID" Mode="In" Type="String" />
+          <Parameter Name="SPM_ID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GRP_ModifyReciveForm">
             <Parameter Name="REC_ID" Mode="In" Type="String" />
@@ -1249,10 +1263,10 @@
             <Parameter Name="MOD_USER" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GRP_QueryItemsToCollect" ReturnType="Collection(PrudenceERPModel.GRP_QueryItemsToCollect_Result)">
-            <Parameter Name="USER_NO" Mode="In" Type="String" />
+          <Parameter Name="USER_NO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GRP_QueryMainForm" ReturnType="Collection(PrudenceERPModel.GRP_QueryMainForm_Result)">
-            <Parameter Name="USER_NO" Mode="In" Type="String" />
+          <Parameter Name="USER_NO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GRP_RemoveShippingItem">
             <Parameter Name="SPM_ID" Mode="In" Type="String" />
@@ -1284,22 +1298,23 @@
             <Parameter Name="MVC_CTRL" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SysCore_Auth_GetLoginInfo" ReturnType="Collection(PrudenceERPModel.SysCore_Auth_GetLoginInfo_Result)">
-            <Parameter Name="LOGIN_ID" Mode="In" Type="String" />
+          <Parameter Name="LOGIN_ID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SysCore_Auth_GetMenuByUser" ReturnType="Collection(PrudenceERPModel.SysCore_Auth_GetMenuByUser_Result)">
             <Parameter Name="USER_NO" Mode="In" Type="String" />
             <Parameter Name="PRG_AREA" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SysCore_Auth_GetModuleByUser" ReturnType="Collection(PrudenceERPModel.SysCore_Auth_GetModuleByUser_Result)">
-            <Parameter Name="USER_NO" Mode="In" Type="String" />
+          <Parameter Name="USER_NO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SysCore_Auth_GetUserInfo" ReturnType="Collection(PrudenceERPModel.SysCore_Auth_GetUserInfo_Result)">
-            <Parameter Name="USER_NO" Mode="In" Type="String" />
+          <Parameter Name="USER_NO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SysCore_Auth_VerifyWebFormByUser" ReturnType="Collection(PrudenceERPModel.SysCore_Auth_VerifyWebFormByUser_Result)">
             <Parameter Name="USER_NO" Mode="In" Type="String" />
             <Parameter Name="ENT_POINT" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SYSPROFILE" EntityType="PrudenceERPModel.SYSPROFILE" />
         </EntityContainer>
         <ComplexType Name="GRP_GetPrintLabels_Result">
           <Property Type="String" Name="WHE_NAME" Nullable="true" MaxLength="50" />
@@ -1488,6 +1503,20 @@
           <Property Type="String" Name="ENT_POINT" Nullable="true" MaxLength="128" />
           <Property Type="String" Name="PARAM_VAL" Nullable="true" MaxLength="128" />
         </ComplexType>
+        <EntityType Name="SYSPROFILE">
+          <Key>
+            <PropertyRef Name="USER_NO" />
+            <PropertyRef Name="PRG_AREA" />
+            <PropertyRef Name="MVC_CTRL" />
+            <PropertyRef Name="PF_KEY" />
+          </Key>
+          <Property Name="USER_NO" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="PRG_AREA" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="MVC_CTRL" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="PF_KEY" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="PF_VALUE" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="MOD_UTC" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2056,6 +2085,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="SYSPROFILE">
+            <EntityTypeMapping TypeName="PrudenceERPModel.SYSPROFILE">
+              <MappingFragment StoreEntitySet="SYSPROFILE">
+                <ScalarProperty Name="MOD_UTC" ColumnName="MOD_UTC" />
+                <ScalarProperty Name="PF_VALUE" ColumnName="PF_VALUE" />
+                <ScalarProperty Name="PF_KEY" ColumnName="PF_KEY" />
+                <ScalarProperty Name="MVC_CTRL" ColumnName="MVC_CTRL" />
+                <ScalarProperty Name="PRG_AREA" ColumnName="PRG_AREA" />
+                <ScalarProperty Name="USER_NO" ColumnName="USER_NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -29,6 +29,7 @@
         <AssociationConnector Association="PrudenceERPModel.FK_SYSROLE__SYSROLE_F_SYSPRG" ManuallyRouted="false" />
         <AssociationConnector Association="PrudenceERPModel.FK_SYSROLE__SYSROLE_F_SYSROLE" ManuallyRouted="false" />
         <AssociationConnector Association="PrudenceERPModel.SYSROLE_USERS" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PrudenceERPModel.SYSPROFILE" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -34,8 +35,11 @@ namespace EntityFrameworkLab
             prudenceERPEntities = new PrudenceERPEntities3();
             //FirstQty();
             //ProcedureTest();
-            OrderByTest();
-            ThenByTest();
+            // OrderByTest();
+            // ThenByTest();
+            DynamicOrderByTest();
+            DynamicThenByTest();
+            DynamicWhereTest();
             Console.Read();
 
         }
@@ -52,6 +56,7 @@ namespace EntityFrameworkLab
             Console.WriteLine(query.Count.ToString());
         }
 
+        #region Order by
         private static void OrderByTest()
         {
             var query = prudenceERPEntities.SysCore_Auth_GetMenuByUser("10000000", "SysCore").AsQueryable();
@@ -75,9 +80,9 @@ namespace EntityFrameworkLab
             {
                 Console.WriteLine(item.PRG_NAME);
             }
-   
+
         }
-        #region Order by
+
         public static IQueryable<T> OrderBy<T>(IQueryable<T> source2, string propertyName, bool ascending, bool isThenBy) where T : class
         {
             Type type = typeof(T);
@@ -95,6 +100,48 @@ namespace EntityFrameworkLab
                 methodName = ascending ? "ThenBy" : "ThenByDescending";
             MethodCallExpression resultExp = Expression.Call(typeof(Queryable), methodName, new Type[] { type, property.PropertyType }, source.Expression, Expression.Quote(orderByExpression));
             return source.Provider.CreateQuery<T>(resultExp);
+        }
+        #endregion
+
+        #region DynamicQueryExtension
+        private static void DynamicOrderByTest()
+        {
+            var query = prudenceERPEntities.SYSPRG.AsQueryable();
+            query = query.OrderBy("MVC_ACT desc");
+            Console.WriteLine("DynamicOrderByTest");
+            Console.WriteLine("======================");
+            foreach (var item in query)
+            {
+                Console.WriteLine(item.PRG_NAME);
+            }
+        }
+
+        private static void DynamicThenByTest()
+        {
+            var query = prudenceERPEntities.SYSPRG.AsQueryable();
+            query = query.OrderBy("MVC_ACT asc,ORDERNUM desc");
+
+            Console.WriteLine("DynamicThenByTest");
+            Console.WriteLine("======================");
+            foreach (var item in query)
+            {
+                Console.WriteLine(item.PRG_NAME);
+            }
+        }
+
+        private static void DynamicWhereTest()
+        {
+            var query = prudenceERPEntities.SYSPRG.AsQueryable();
+            string searchColumn = "PRG_NAME";
+            string keyword = "儲存";
+            string queryExpression = string.Format("{0}.Contains(@0) && ORDERNUM>@1", searchColumn);
+            query = query.Where(queryExpression, keyword, 1);
+            Console.WriteLine("DynamicWhereTest");
+            Console.WriteLine("======================");
+            foreach (var item in query)
+            {
+                Console.WriteLine(item.PRG_NAME);
+            }
         }
         #endregion
     }

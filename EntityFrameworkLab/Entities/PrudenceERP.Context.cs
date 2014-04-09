@@ -46,6 +46,7 @@ namespace EntityFrameworkLab.Entities
         public virtual DbSet<MP0002> MP0002 { get; set; }
         public virtual DbSet<MP1001> MP1001 { get; set; }
         public virtual DbSet<vwSYSPRG_MENU> vwSYSPRG_MENU { get; set; }
+        public virtual DbSet<SYSPROFILE> SYSPROFILE { get; set; }
     
         public virtual int aDevTool_新增程式基本檔(ObjectParameter pRG_NO, string pRG_NAME, string pRG_TYPE, string pRG_AREA, string mVC_CTRL, string mVC_ACT, string eNT_POINT, string pARAM_VAL, string iS_MENU, string uP_DIRNO)
         {

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EntityFrameworkLab</RootNamespace>
     <AssemblyName>EntityFrameworkLab</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicQueryExtension.cs" />
     <Compile Include="Entities\GRPMAD.cs">
       <DependentUpon>PrudenceERP.tt</DependentUpon>
     </Compile>
@@ -140,6 +142,9 @@
       <DependentUpon>PrudenceERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\SYSPRG.cs">
+      <DependentUpon>PrudenceERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SYSPROFILE.cs">
       <DependentUpon>PrudenceERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\SYSROLE.cs">
