@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8e68bf719a9748c48288f4c44966a296" Name="Diagram1">
+        <EntityTypeShape EntityType="PrudenceERPModel.GRP_BS_SEQ" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.GRP_BS_SPMRK" Width="1.5" PointX="2.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.GRP_BS_WHE" Width="1.5" PointX="10.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.GRPMAD" Width="1.5" PointX="8" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.GRPMAH" Width="1.5" PointX="5.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.GRPREC" Width="1.5" PointX="10.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.GRPREC_PRT" Width="1.5" PointX="7.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.SYSCKIND" Width="1.5" PointX="5.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.SYSCODE" Width="1.5" PointX="8" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.SYSCOMP" Width="1.5" PointX="9.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.SYSDEPT" Width="1.5" PointX="11.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.SYSPACK" Width="1.5" PointX="12.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.SYSPRG" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.SYSROLE" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.SYSROLE_FUN" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.SYSUSER" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.MP0002" Width="1.5" PointX="2.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.MP1001" Width="1.5" PointX="4.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrudenceERPModel.vwSYSPRG_MENU" Width="1.5" PointX="12.75" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="PrudenceERPModel.FK_GRPMAD_RELATIONS_GRPMAH" ManuallyRouted="false" />
+        <AssociationConnector Association="PrudenceERPModel.FK_SYSCODE_RELATIONS_SYSCKIND" ManuallyRouted="false" />
+        <AssociationConnector Association="PrudenceERPModel.FK_SYSROLE__SYSROLE_F_SYSPRG" ManuallyRouted="false" />
+        <AssociationConnector Association="PrudenceERPModel.FK_SYSROLE__SYSROLE_F_SYSROLE" ManuallyRouted="false" />
+        <AssociationConnector Association="PrudenceERPModel.SYSROLE_USERS" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
