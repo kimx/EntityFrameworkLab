@@ -46,6 +46,14 @@ namespace EntityFrameworkLab.Entities
         public virtual DbSet<MP0002> MP0002 { get; set; }
         public virtual DbSet<MP1001> MP1001 { get; set; }
         public virtual DbSet<vwSYSPRG_MENU> vwSYSPRG_MENU { get; set; }
+        public virtual DbSet<SYSPROFILE> SYSPROFILE { get; set; }
+        public virtual DbSet<GRP_BS_CONTAINERTYPE> GRP_BS_CONTAINERTYPE { get; set; }
+        public virtual DbSet<GRP_BS_GOODSTYPE> GRP_BS_GOODSTYPE { get; set; }
+        public virtual DbSet<GRP_BS_NOTE> GRP_BS_NOTE { get; set; }
+        public virtual DbSet<GRPCONTACT> GRPCONTACT { get; set; }
+        public virtual DbSet<GRPCUST> GRPCUST { get; set; }
+        public virtual DbSet<GRPFILES> GRPFILES { get; set; }
+        public virtual DbSet<GRPMAH_CO_STATUS> GRPMAH_CO_STATUS { get; set; }
     
         public virtual int aDevTool_新增程式基本檔(ObjectParameter pRG_NO, string pRG_NAME, string pRG_TYPE, string pRG_AREA, string mVC_CTRL, string mVC_ACT, string eNT_POINT, string pARAM_VAL, string iS_MENU, string uP_DIRNO)
         {
@@ -129,7 +137,7 @@ namespace EntityFrameworkLab.Entities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aDevTool_新增程式基本檔_Single", pRG_NAMEParameter, pRG_TYPEParameter, pRG_AREAParameter, mVC_CTRLParameter, mVC_ACTParameter, eNT_POINTParameter, pARAM_VALParameter, iS_MENUParameter, uP_DIRNOParameter);
         }
     
-        public virtual int GRP_0_AddReciveForm(ObjectParameter rEC_ID, string rEC_MNO, Nullable<System.DateTime> rECIN_UTC, string dISPATCH, string dISPATCH_CON, string rECEIVING, string rECEIVING_CON, string dEST_NAME, string gOODS_NAME, Nullable<int> qTY, Nullable<decimal> qTY_WEIGHT, Nullable<decimal> qTY_VOLUME, Nullable<int> qTY_NUMBER, string rEMARK, string cRT_USER)
+        public virtual int GRP_0_AddReciveForm(ObjectParameter rEC_ID, string rEC_MNO, Nullable<System.DateTime> rECIN_UTC, string dISPATCH, string dISPATCH_CON, string rECEIVING, string rECEIVING_CON, string dEST_NAME, string gOODS_NAME, string gDSTYPE_ID, Nullable<int> qTY, Nullable<decimal> qTY_WEIGHT, Nullable<decimal> qTY_VOLUME, Nullable<int> qTY_NUMBER, string rEMARK, string cRT_USER)
         {
             var rEC_MNOParameter = rEC_MNO != null ?
                 new ObjectParameter("REC_MNO", rEC_MNO) :
@@ -163,6 +171,10 @@ namespace EntityFrameworkLab.Entities
                 new ObjectParameter("GOODS_NAME", gOODS_NAME) :
                 new ObjectParameter("GOODS_NAME", typeof(string));
     
+            var gDSTYPE_IDParameter = gDSTYPE_ID != null ?
+                new ObjectParameter("GDSTYPE_ID", gDSTYPE_ID) :
+                new ObjectParameter("GDSTYPE_ID", typeof(string));
+    
             var qTYParameter = qTY.HasValue ?
                 new ObjectParameter("QTY", qTY) :
                 new ObjectParameter("QTY", typeof(int));
@@ -187,10 +199,10 @@ namespace EntityFrameworkLab.Entities
                 new ObjectParameter("CRT_USER", cRT_USER) :
                 new ObjectParameter("CRT_USER", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GRP_0_AddReciveForm", rEC_ID, rEC_MNOParameter, rECIN_UTCParameter, dISPATCHParameter, dISPATCH_CONParameter, rECEIVINGParameter, rECEIVING_CONParameter, dEST_NAMEParameter, gOODS_NAMEParameter, qTYParameter, qTY_WEIGHTParameter, qTY_VOLUMEParameter, qTY_NUMBERParameter, rEMARKParameter, cRT_USERParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GRP_0_AddReciveForm", rEC_ID, rEC_MNOParameter, rECIN_UTCParameter, dISPATCHParameter, dISPATCH_CONParameter, rECEIVINGParameter, rECEIVING_CONParameter, dEST_NAMEParameter, gOODS_NAMEParameter, gDSTYPE_IDParameter, qTYParameter, qTY_WEIGHTParameter, qTY_VOLUMEParameter, qTY_NUMBERParameter, rEMARKParameter, cRT_USERParameter);
         }
     
-        public virtual int GRP_AddReciveForm(string rEC_MNO, Nullable<System.DateTime> rECIN_UTC, string dISPATCH, string dISPATCH_CON, string rECEIVING, string rECEIVING_CON, string dEST_NAME, string gOODS_NAME, Nullable<int> qTY, Nullable<decimal> qTY_WEIGHT, Nullable<decimal> qTY_VOLUME, Nullable<int> qTY_NUMBER, string rEMARK, string cRT_USER)
+        public virtual int GRP_AddReciveForm(string rEC_MNO, Nullable<System.DateTime> rECIN_UTC, string dISPATCH, string dISPATCH_CON, string rECEIVING, string rECEIVING_CON, string dEST_NAME, string gOODS_NAME, string gDSTYPE_ID, Nullable<int> qTY, Nullable<decimal> qTY_WEIGHT, Nullable<decimal> qTY_VOLUME, Nullable<int> qTY_NUMBER, string rEMARK, string cRT_USER, Nullable<bool> directPrint)
         {
             var rEC_MNOParameter = rEC_MNO != null ?
                 new ObjectParameter("REC_MNO", rEC_MNO) :
@@ -224,6 +236,10 @@ namespace EntityFrameworkLab.Entities
                 new ObjectParameter("GOODS_NAME", gOODS_NAME) :
                 new ObjectParameter("GOODS_NAME", typeof(string));
     
+            var gDSTYPE_IDParameter = gDSTYPE_ID != null ?
+                new ObjectParameter("GDSTYPE_ID", gDSTYPE_ID) :
+                new ObjectParameter("GDSTYPE_ID", typeof(string));
+    
             var qTYParameter = qTY.HasValue ?
                 new ObjectParameter("QTY", qTY) :
                 new ObjectParameter("QTY", typeof(int));
@@ -248,7 +264,11 @@ namespace EntityFrameworkLab.Entities
                 new ObjectParameter("CRT_USER", cRT_USER) :
                 new ObjectParameter("CRT_USER", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GRP_AddReciveForm", rEC_MNOParameter, rECIN_UTCParameter, dISPATCHParameter, dISPATCH_CONParameter, rECEIVINGParameter, rECEIVING_CONParameter, dEST_NAMEParameter, gOODS_NAMEParameter, qTYParameter, qTY_WEIGHTParameter, qTY_VOLUMEParameter, qTY_NUMBERParameter, rEMARKParameter, cRT_USERParameter);
+            var directPrintParameter = directPrint.HasValue ?
+                new ObjectParameter("DirectPrint", directPrint) :
+                new ObjectParameter("DirectPrint", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GRP_AddReciveForm", rEC_MNOParameter, rECIN_UTCParameter, dISPATCHParameter, dISPATCH_CONParameter, rECEIVINGParameter, rECEIVING_CONParameter, dEST_NAMEParameter, gOODS_NAMEParameter, gDSTYPE_IDParameter, qTYParameter, qTY_WEIGHTParameter, qTY_VOLUMEParameter, qTY_NUMBERParameter, rEMARKParameter, cRT_USERParameter, directPrintParameter);
         }
     
         public virtual int GRP_AddReciveForm2(string rEC_MNO, Nullable<System.DateTime> rECIN_UTC, string dISPATCH, string dISPATCH_CON, string rECEIVING, string rECEIVING_CON, string dEST_NAME, string gOODS_NAME, Nullable<int> qTY, Nullable<decimal> qTY_WEIGHT, Nullable<decimal> qTY_VOLUME, Nullable<int> qTY_NUMBER, string rEMARK, string cRT_USER, Nullable<bool> directPrint)
@@ -423,7 +443,7 @@ namespace EntityFrameworkLab.Entities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GRP_GetShippingItems_Result>("GRP_GetShippingItems", sPM_IDParameter);
         }
     
-        public virtual int GRP_ModifyReciveForm(string rEC_ID, string rEC_MNO, Nullable<System.DateTime> rECIN_UTC, string dISPATCH, string dISPATCH_CON, string rECEIVING, string rECEIVING_CON, string dEST_NAME, string gOODS_NAME, Nullable<int> qTY, Nullable<decimal> qTY_WEIGHT, Nullable<decimal> qTY_VOLUME, Nullable<int> qTY_NUMBER, string rEMARK, string mOD_USER)
+        public virtual int GRP_ModifyReciveForm(string rEC_ID, string rEC_MNO, Nullable<System.DateTime> rECIN_UTC, string dISPATCH, string dISPATCH_CON, string rECEIVING, string rECEIVING_CON, string dEST_NAME, string gOODS_NAME, string gDSTYPE_ID, Nullable<int> qTY, Nullable<decimal> qTY_WEIGHT, Nullable<decimal> qTY_VOLUME, Nullable<int> qTY_NUMBER, string rEMARK, string mOD_USER)
         {
             var rEC_IDParameter = rEC_ID != null ?
                 new ObjectParameter("REC_ID", rEC_ID) :
@@ -461,6 +481,10 @@ namespace EntityFrameworkLab.Entities
                 new ObjectParameter("GOODS_NAME", gOODS_NAME) :
                 new ObjectParameter("GOODS_NAME", typeof(string));
     
+            var gDSTYPE_IDParameter = gDSTYPE_ID != null ?
+                new ObjectParameter("GDSTYPE_ID", gDSTYPE_ID) :
+                new ObjectParameter("GDSTYPE_ID", typeof(string));
+    
             var qTYParameter = qTY.HasValue ?
                 new ObjectParameter("QTY", qTY) :
                 new ObjectParameter("QTY", typeof(int));
@@ -485,7 +509,7 @@ namespace EntityFrameworkLab.Entities
                 new ObjectParameter("MOD_USER", mOD_USER) :
                 new ObjectParameter("MOD_USER", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GRP_ModifyReciveForm", rEC_IDParameter, rEC_MNOParameter, rECIN_UTCParameter, dISPATCHParameter, dISPATCH_CONParameter, rECEIVINGParameter, rECEIVING_CONParameter, dEST_NAMEParameter, gOODS_NAMEParameter, qTYParameter, qTY_WEIGHTParameter, qTY_VOLUMEParameter, qTY_NUMBERParameter, rEMARKParameter, mOD_USERParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GRP_ModifyReciveForm", rEC_IDParameter, rEC_MNOParameter, rECIN_UTCParameter, dISPATCHParameter, dISPATCH_CONParameter, rECEIVINGParameter, rECEIVING_CONParameter, dEST_NAMEParameter, gOODS_NAMEParameter, gDSTYPE_IDParameter, qTYParameter, qTY_WEIGHTParameter, qTY_VOLUMEParameter, qTY_NUMBERParameter, rEMARKParameter, mOD_USERParameter);
         }
     
         public virtual ObjectResult<GRP_QueryItemsToCollect_Result> GRP_QueryItemsToCollect(string uSER_NO)

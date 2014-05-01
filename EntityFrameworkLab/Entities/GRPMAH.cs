@@ -17,6 +17,7 @@ namespace EntityFrameworkLab.Entities
         public GRPMAH()
         {
             this.GRPMAD = new HashSet<GRPMAD>();
+            this.GRPFILES = new HashSet<GRPFILES>();
         }
     
         public string SPM_ID { get; set; }
@@ -47,7 +48,12 @@ namespace EntityFrameworkLab.Entities
         public Nullable<System.DateTime> MOD_UTC { get; set; }
         public string MOD_DEPT { get; set; }
         public string MOD_USER { get; set; }
+        public string CNTYPE_ID { get; set; }
+        public string DEL_CODE { get; set; }
+        public Nullable<int> DEL_NOTE_ID { get; set; }
     
         public virtual ICollection<GRPMAD> GRPMAD { get; set; }
+        public virtual GRPMAH_CO_STATUS GRPMAH_CO_STATUS { get; set; }
+        public virtual ICollection<GRPFILES> GRPFILES { get; set; }
     }
 }

@@ -43,5 +43,10 @@ namespace EntityFrameworkLab.Entities
         public Nullable<System.DateTime> MOD_UTC { get; set; }
         public string MOD_DEPT { get; set; }
         public string MOD_USER { get; set; }
+        public string GDSTYPE_ID { get; set; }
+        public string DEL_CODE { get; set; }
+        public Nullable<int> DEL_NOTE_ID { get; set; }
+        public string ISOVERLOAD { get; set; }
+        public string TAG_ID { get; set; }
     }
 }
