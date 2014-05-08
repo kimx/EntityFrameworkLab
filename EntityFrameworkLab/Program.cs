@@ -33,14 +33,14 @@ namespace EntityFrameworkLab
         static void Main(string[] args)
         {
             prudenceERPEntities = new PrudenceERPEntities3();
-            //FirstQty();
+            FirstQty();
             //ProcedureTest();
             // OrderByTest();
             // ThenByTest();
             //DynamicOrderByTest();
             //DynamicThenByTest();
             //DynamicWhereTest();
-            InsertRoleRelation();
+            //InsertRoleRelation();
             Console.Read();
 
         }
