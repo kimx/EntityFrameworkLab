@@ -29,10 +29,10 @@ namespace EntityFrameworkLab
     }
     class Program
     {
-        static PrudenceERPEntities3 prudenceERPEntities;
+        static PrudenceEntities prudenceERPEntities;
         static void Main(string[] args)
         {
-            prudenceERPEntities = new PrudenceERPEntities3();
+            prudenceERPEntities = new PrudenceEntities();
             FirstQty();
             //ProcedureTest();
             // OrderByTest();

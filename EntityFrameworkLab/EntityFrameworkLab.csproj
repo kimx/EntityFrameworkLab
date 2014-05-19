@@ -54,159 +54,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DynamicQueryExtension.cs" />
-    <Compile Include="Entities\GRPCONTACT.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRPCUST.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRPFILES.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRPMAD.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRPMAH.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRPMAH_CO_STATUS.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRPREC.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRPREC_PRT.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRP_BS_CONTAINERTYPE.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRP_BS_GOODSTYPE.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRP_BS_NOTE.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRP_BS_SEQ.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRP_BS_SPMRK.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRP_BS_WHE.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRP_GetPrintLabels_Result.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRP_GetShippingItems_Result.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRP_QueryItemsToCollect_Result.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GRP_QueryMainForm_Result.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\MP0002.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\MP1001.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\PrudenceERP.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PrudenceERP.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\PrudenceERP.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\PrudenceERP.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PrudenceERP.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SYSCKIND.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SYSCODE.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SYSCOMP.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SysCore_Auth_GetActionsByUser_Result.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SysCore_Auth_GetLoginInfo_Result.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SysCore_Auth_GetMenuByUser_Result.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SysCore_Auth_GetModuleByUser_Result.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SysCore_Auth_GetUserInfo_Result.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SysCore_Auth_VerifyWebFormByUser_Result.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SYSDEPT.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SYSPACK.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SYSPRG.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SYSPROFILE.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SYSROLE.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SYSROLE_FUN.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\SYSUSER.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\vwSYSPRG_MENU.cs">
-      <DependentUpon>PrudenceERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Entities\PrudenceERP.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PrudenceERP.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Entities\PrudenceERP.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PrudenceERP.edmx</DependentUpon>
-      <LastGenOutput>PrudenceERP.Context.cs</LastGenOutput>
-    </None>
-    <None Include="Entities\PrudenceERP.edmx.diagram">
-      <DependentUpon>PrudenceERP.edmx</DependentUpon>
-    </None>
-    <None Include="Entities\PrudenceERP.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PrudenceERP.edmx</DependentUpon>
-      <LastGenOutput>PrudenceERP.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
