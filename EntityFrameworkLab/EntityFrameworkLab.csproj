@@ -53,13 +53,126 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BOOKS.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DynamicQueryExtension.cs" />
+    <Compile Include="GRPCONTACT.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRPCUST.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRPFILES.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRPMAD.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRPMAH.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRPMAH_CO_STATUS.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRPREC.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRPREC_PRT.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRP_BS_CONTAINERTYPE.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRP_BS_GOODSTYPE.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRP_BS_NOTE.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRP_BS_SEQ.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRP_BS_SPMRK.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRP_BS_TAG.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRP_BS_WHE.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PrudenceEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrudenceEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PrudenceEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PrudenceEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrudenceEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SYSCKIND.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYSCODE.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYSCOMP.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYSDEPT.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYSPACK.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYSPRG.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYSPROFILE.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYSROLE.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYSROLE_FUN.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYSUSER.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYSUSER_EVNTLOG.cs">
+      <DependentUpon>PrudenceEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="PrudenceEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PrudenceEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="PrudenceEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PrudenceEntities.edmx</DependentUpon>
+      <LastGenOutput>PrudenceEntities.Context.cs</LastGenOutput>
+    </None>
+    <None Include="PrudenceEntities.edmx.diagram">
+      <DependentUpon>PrudenceEntities.edmx</DependentUpon>
+    </None>
+    <None Include="PrudenceEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PrudenceEntities.edmx</DependentUpon>
+      <LastGenOutput>PrudenceEntities.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

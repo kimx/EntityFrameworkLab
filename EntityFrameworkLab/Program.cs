@@ -1,4 +1,4 @@
-﻿using EntityFrameworkLab.Entities;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
@@ -29,11 +29,11 @@ namespace EntityFrameworkLab
     }
     class Program
     {
-        static PrudenceEntities prudenceERPEntities;
+        static Entities prudenceERPEntities;
         static void Main(string[] args)
         {
-            prudenceERPEntities = new PrudenceEntities();
-            FirstQty();
+            prudenceERPEntities = new Entities();
+            //      FirstQty();
             //ProcedureTest();
             // OrderByTest();
             // ThenByTest();
@@ -41,8 +41,33 @@ namespace EntityFrameworkLab
             //DynamicThenByTest();
             //DynamicWhereTest();
             //InsertRoleRelation();
+
+            GetLogs();
             Console.Read();
 
+        }
+
+        public static void GetLogs()
+        {
+            DateTime beginCrtUtc = DateTime.Now.AddDays(-30);
+            DateTime endCrtUtc = DateTime.Now.AddDays(1);
+
+            var result = from entity in prudenceERPEntities.SYSUSER_EVNTLOG.AsNoTracking()
+                         where entity.CRT_UTC >= beginCrtUtc && entity.CRT_UTC <= endCrtUtc
+                         select new UserEvntLogInfo
+                         {
+                             EVNT_ID = entity.EVNT_ID,
+                             USER_NO = entity.USER_NO,
+                             PRG_AREA = entity.PRG_AREA,
+                             MVC_CTRL = entity.MVC_CTRL,
+                             MVC_ACT = entity.MVC_ACT,
+                             DESCTXT = entity.DESCTXT,
+                             CRT_UTC = entity.CRT_UTC.Value,
+                             HOST_IPADDR = entity.HOST_IPADDR,
+                             POST_DATA = entity.POST_DATA,
+
+                         };
+            var list = result.ToList();
         }
 
         private static void InsertRoleRelation()
@@ -82,34 +107,34 @@ namespace EntityFrameworkLab
 
         private static void ProcedureTest()
         {
-            var query = prudenceERPEntities.SysCore_Auth_GetModuleByUser("10000000").ToList();
-            Console.WriteLine(query.Count.ToString());
+            //var query = prudenceERPEntities.SysCore_Auth_GetModuleByUser("10000000").ToList();
+            //Console.WriteLine(query.Count.ToString());
         }
 
         #region Order by
         private static void OrderByTest()
         {
-            var query = prudenceERPEntities.SysCore_Auth_GetMenuByUser("10000000", "SysCore").AsQueryable();
-            query = OrderBy(query, "MVC_ACT", false, false);
-            Console.WriteLine("OrderByTes");
-            Console.WriteLine("======================");
-            foreach (var item in query)
-            {
-                Console.WriteLine(item.PRG_NAME);
-            }
+            //var query = prudenceERPEntities.SysCore_Auth_GetMenuByUser("10000000", "SysCore").AsQueryable();
+            //query = OrderBy(query, "MVC_ACT", false, false);
+            //Console.WriteLine("OrderByTes");
+            //Console.WriteLine("======================");
+            //foreach (var item in query)
+            //{
+            //    Console.WriteLine(item.PRG_NAME);
+            //}
         }
 
         private static void ThenByTest()
         {
-            var query = prudenceERPEntities.SysCore_Auth_GetMenuByUser("10000000", "SysCore").AsQueryable();
-            query = OrderBy(query, "MVC_ACT", false, false);
-            query = OrderBy(query, "ORDERNUM", false, true);
-            Console.WriteLine("ThenByTest");
-            Console.WriteLine("======================");
-            foreach (var item in query)
-            {
-                Console.WriteLine(item.PRG_NAME);
-            }
+            //var query = prudenceERPEntities.SysCore_Auth_GetMenuByUser("10000000", "SysCore").AsQueryable();
+            //query = OrderBy(query, "MVC_ACT", false, false);
+            //query = OrderBy(query, "ORDERNUM", false, true);
+            //Console.WriteLine("ThenByTest");
+            //Console.WriteLine("======================");
+            //foreach (var item in query)
+            //{
+            //    Console.WriteLine(item.PRG_NAME);
+            //}
 
         }
 
@@ -174,5 +199,24 @@ namespace EntityFrameworkLab
             }
         }
         #endregion
+    }
+
+
+    [Serializable]
+    public class UserEvntLogInfo
+    {
+        public int EVNT_ID { get; set; }
+
+        public string USER_NO { get; set; }
+        public string PRG_AREA { get; set; }
+        public string MVC_CTRL { get; set; }
+        public string MVC_ACT { get; set; }
+        public string DESCTXT { get; set; }
+        public System.DateTime CRT_UTC { get; set; }
+        public string HOST_IPADDR { get; set; }
+        public string POST_DATA { get; set; }
+
+        //exten
+        public IDictionary<string, object> ActionParameters { get; set; }
     }
 }

@@ -1,0 +1,1658 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOOKS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="BOOKNAME" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="AUTHOR" Type="nvarchar" MaxLength="64" />
+          <Property Name="PUBLISH_UTC" Type="datetime" />
+          <Property Name="VERSION_NUM" Type="int" />
+          <Property Name="LIST_PRICE" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="GRP_BS_CONTAINERTYPE">
+          <Key>
+            <PropertyRef Name="CNTYPE_ID" />
+          </Key>
+          <Property Name="CNTYPE_ID" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="CNTYPE_NAME" Type="nvarchar" MaxLength="16" />
+          <Property Name="DESCTXT" Type="nvarchar" MaxLength="256" />
+          <Property Name="ENABLED" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="GRP_BS_GOODSTYPE">
+          <Key>
+            <PropertyRef Name="GDSTYPE_ID" />
+          </Key>
+          <Property Name="GDSTYPE_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="CNTYPE_ID" Type="varchar" MaxLength="2" />
+          <Property Name="GDSTYPE_NAME" Type="nvarchar" MaxLength="16" />
+          <Property Name="DESCTXT" Type="nvarchar" MaxLength="256" />
+          <Property Name="ENABLED" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="GRP_BS_NOTE">
+          <Key>
+            <PropertyRef Name="NOTE_ID" />
+          </Key>
+          <Property Name="NOTE_ID" Type="int" Nullable="false" />
+          <Property Name="DESCTXT" Type="nvarchar" MaxLength="256" />
+          <Property Name="TABLE_NA" Type="varchar" MaxLength="16" />
+          <Property Name="PK_STR1" Type="varchar" MaxLength="8" />
+          <Property Name="CRT_DEPT" Type="varchar" MaxLength="8" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="8" />
+          <Property Name="CRT_UTC" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GRP_BS_SEQ">
+          <Key>
+            <PropertyRef Name="TABLE_NA" />
+            <PropertyRef Name="PK_YYYY" />
+            <PropertyRef Name="PK_MM" />
+            <PropertyRef Name="PK_DD" />
+            <PropertyRef Name="PK_STR1" />
+          </Key>
+          <Property Name="TABLE_NA" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="PK_YYYY" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PK_MM" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="PK_DD" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="PK_STR1" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CURRENT_SEQ" Type="smallint" />
+          <Property Name="MOD_UTC" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GRP_BS_SPMRK">
+          <Key>
+            <PropertyRef Name="SEQ_NUM" />
+          </Key>
+          <Property Name="SEQ_NUM" Type="smallint" Nullable="false" />
+          <Property Name="REC_SPMRK" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="GRP_BS_TAG">
+          <Key>
+            <PropertyRef Name="TAG_ID" />
+          </Key>
+          <Property Name="TAG_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TAG_TITLE" Type="nvarchar" MaxLength="16" />
+          <Property Name="TAG_COLOR" Type="nvarchar" MaxLength="16" />
+          <Property Name="COMP_NO" Type="varchar" MaxLength="4" />
+          <Property Name="DEP_NO" Type="varchar" MaxLength="8" />
+          <Property Name="WHE_NO" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="GRP_BS_WHE">
+          <Key>
+            <PropertyRef Name="WHE_NO" />
+          </Key>
+          <Property Name="WHE_NO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="WHE_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="COMP_NO" Type="varchar" MaxLength="4" />
+          <Property Name="DEP_NO" Type="varchar" MaxLength="8" />
+          <Property Name="ID_PREFIX" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="GRPCONTACT">
+          <Key>
+            <PropertyRef Name="CONT_ID" />
+          </Key>
+          <Property Name="CONT_ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CUST_ID" Type="varchar" MaxLength="8" />
+          <Property Name="CONT_NAME" Type="nvarchar" MaxLength="16" />
+          <Property Name="PHONE_NUM" Type="varchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="GRPCUST">
+          <Key>
+            <PropertyRef Name="CUST_ID" />
+          </Key>
+          <Property Name="CUST_ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CUST_NO" Type="varchar" MaxLength="8" />
+          <Property Name="CUST_NAME" Type="nvarchar" MaxLength="16" />
+          <Property Name="PHONE_NUM" Type="varchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="GRPFILES">
+          <Key>
+            <PropertyRef Name="FILE_ID" />
+          </Key>
+          <Property Name="FILE_ID" Type="int" Nullable="false" />
+          <Property Name="FILE_NAME" Type="varchar" MaxLength="32" />
+          <Property Name="FILE_TYPE" Type="varchar" MaxLength="16" />
+          <Property Name="FILE_SIZE" Type="int" />
+          <Property Name="FILE_CONTENT" Type="image" />
+          <Property Name="CRT_UTC" Type="datetime" />
+          <Property Name="CRT_DEPT" Type="varchar" MaxLength="8" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="GRPMAD">
+          <Key>
+            <PropertyRef Name="SPM_ID" />
+            <PropertyRef Name="ITEM_NO" />
+          </Key>
+          <Property Name="SPM_ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="ITEM_NO" Type="int" Nullable="false" />
+          <Property Name="REC_ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="DEL_CODE" Type="varchar" MaxLength="1" />
+          <Property Name="CRT_UTC" Type="datetime" />
+          <Property Name="CRT_DEPT" Type="varchar" MaxLength="8" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="8" />
+          <Property Name="MOD_UTC" Type="datetime" />
+          <Property Name="MOD_DEPT" Type="varchar" MaxLength="8" />
+          <Property Name="MOD_USER" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="GRPMAH">
+          <Key>
+            <PropertyRef Name="SPM_ID" />
+          </Key>
+          <Property Name="SPM_ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CURRENTSTATUS" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="CONTAINER_NO" Type="nvarchar" MaxLength="32" />
+          <Property Name="SERAL_NO" Type="nvarchar" MaxLength="32" />
+          <Property Name="LOADING_UTC" Type="datetime" />
+          <Property Name="SIZE" Type="nvarchar" MaxLength="32" />
+          <Property Name="CARRIER" Type="nvarchar" MaxLength="32" />
+          <Property Name="VESSEL" Type="nvarchar" MaxLength="32" />
+          <Property Name="VOY" Type="nvarchar" MaxLength="32" />
+          <Property Name="LOC_ID" Type="nvarchar" MaxLength="32" />
+          <Property Name="LOC_NAME" Type="nvarchar" MaxLength="64" />
+          <Property Name="HEAD_NO" Type="nvarchar" MaxLength="32" />
+          <Property Name="FORWARDER" Type="nvarchar" MaxLength="64" />
+          <Property Name="CLS_UTC" Type="datetime" />
+          <Property Name="CLOSE_PORT" Type="nvarchar" MaxLength="32" />
+          <Property Name="ETD_UTC" Type="datetime" />
+          <Property Name="ETA_UTC" Type="datetime" />
+          <Property Name="ARRIVAL_PORT" Type="nvarchar" MaxLength="64" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="2048" />
+          <Property Name="SEPARATE" Type="varchar" MaxLength="1" />
+          <Property Name="COMP_NO" Type="varchar" MaxLength="4" />
+          <Property Name="WHE_NO" Type="varchar" MaxLength="4" />
+          <Property Name="CRT_UTC" Type="datetime" />
+          <Property Name="CRT_DEPT" Type="varchar" MaxLength="8" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="8" />
+          <Property Name="MOD_UTC" Type="datetime" />
+          <Property Name="MOD_DEPT" Type="varchar" MaxLength="8" />
+          <Property Name="MOD_USER" Type="varchar" MaxLength="8" />
+          <Property Name="CNTYPE_ID" Type="varchar" MaxLength="2" />
+          <Property Name="DEL_CODE" Type="varchar" MaxLength="1" />
+          <Property Name="DEL_NOTE_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="GRPMAH_CO_STATUS">
+          <Key>
+            <PropertyRef Name="CURRENTSTATUS" />
+          </Key>
+          <Property Name="CURRENTSTATUS" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="STATUS_NAME" Type="nvarchar" MaxLength="8" />
+          <Property Name="DESCTXT" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="GRPMAH_IMG">
+          <Key>
+            <PropertyRef Name="SPM_ID" />
+            <PropertyRef Name="FILE_ID" />
+          </Key>
+          <Property Name="SPM_ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="FILE_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GRPREC">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="REC_MNO" Type="varchar" MaxLength="8" />
+          <Property Name="RECIN_UTC" Type="datetime" />
+          <Property Name="REC_NO" Type="varchar" MaxLength="16" />
+          <Property Name="REC_SPMRK" Type="varchar" MaxLength="8" />
+          <Property Name="DISPATCH" Type="nvarchar" MaxLength="64" />
+          <Property Name="DISPATCH_CON" Type="nvarchar" MaxLength="64" />
+          <Property Name="RECEIVING_NO" Type="varchar" MaxLength="16" />
+          <Property Name="RECEIVING" Type="nvarchar" MaxLength="64" />
+          <Property Name="RECEIVING_CON" Type="nvarchar" MaxLength="64" />
+          <Property Name="DEST_NAME" Type="nvarchar" MaxLength="64" />
+          <Property Name="GOODS_NAME" Type="nvarchar" MaxLength="2048" />
+          <Property Name="QTY" Type="int" />
+          <Property Name="QTY_WEIGHT" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="QTY_VOLUME" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="QTY_NUMBER" Type="int" />
+          <Property Name="UNITPRICE" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="LINETOTAL" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="REC_NOTE" Type="nvarchar" MaxLength="256" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="2048" />
+          <Property Name="COMP_NO" Type="varchar" MaxLength="4" />
+          <Property Name="WHE_NO" Type="varchar" MaxLength="4" />
+          <Property Name="SPM_ID" Type="varchar" MaxLength="8" />
+          <Property Name="CRT_UTC" Type="datetime" />
+          <Property Name="CRT_DEPT" Type="varchar" MaxLength="8" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="8" />
+          <Property Name="MOD_UTC" Type="datetime" />
+          <Property Name="MOD_DEPT" Type="varchar" MaxLength="8" />
+          <Property Name="MOD_USER" Type="varchar" MaxLength="8" />
+          <Property Name="GDSTYPE_ID" Type="varchar" MaxLength="4" />
+          <Property Name="DEL_CODE" Type="varchar" MaxLength="1" />
+          <Property Name="DEL_NOTE_ID" Type="int" />
+          <Property Name="ISOVERLOAD" Type="varchar" MaxLength="1" />
+          <Property Name="HASCHECK" Type="varchar" MaxLength="1" />
+          <Property Name="TAG_ID" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="GRPREC_PRT">
+          <Key>
+            <PropertyRef Name="CRT_UTC" />
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="CRT_UTC" Type="datetime" Nullable="false" />
+          <Property Name="REC_ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="START_NUM" Type="int" />
+          <Property Name="END_NUM" Type="int" />
+          <Property Name="IS_PRINT" Type="varchar" MaxLength="1" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="8" />
+          <Property Name="MOD_UTC" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SYSCKIND">
+          <Key>
+            <PropertyRef Name="CKIND" />
+          </Key>
+          <Property Name="CKIND" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="DESCTXT" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SYSCODE">
+          <Key>
+            <PropertyRef Name="CODE_ID" />
+          </Key>
+          <Property Name="CODE_ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CKIND" Type="varchar" MaxLength="4" />
+          <Property Name="CODE_NO" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="CODE_NAME" Type="nvarchar" MaxLength="64" />
+          <Property Name="DESCTXT" Type="nvarchar" MaxLength="256" />
+          <Property Name="ENABLED" Type="varchar" MaxLength="1" />
+          <Property Name="ORDERNUM" Type="int" />
+          <Property Name="COMP_NO" Type="varchar" MaxLength="4" />
+          <Property Name="DEP_NO" Type="varchar" MaxLength="8" />
+          <Property Name="DEL_CODE" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="SYSCOMP">
+          <Key>
+            <PropertyRef Name="COMP_NO" />
+          </Key>
+          <Property Name="COMP_NO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="COMP_NAME" Type="nvarchar" MaxLength="64" />
+          <Property Name="REF_CODE" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="SYSDEPT">
+          <Key>
+            <PropertyRef Name="DEP_NO" />
+          </Key>
+          <Property Name="DEP_NO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="DEP_NAME" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="UP_DEPNO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="COMP_NO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="REF_CODE" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="SYSPACK">
+          <Key>
+            <PropertyRef Name="PRG_AREA" />
+          </Key>
+          <Property Name="PRG_AREA" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="PACK_NAME" Type="nvarchar" MaxLength="64" />
+          <Property Name="MVC_CTRL" Type="varchar" MaxLength="32" />
+          <Property Name="MVC_ACT" Type="varchar" MaxLength="32" />
+          <Property Name="DESCTXT" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="SYSPRG">
+          <Key>
+            <PropertyRef Name="PRG_NO" />
+          </Key>
+          <Property Name="PRG_NO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="PRG_NAME" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="PRG_TYPE" Type="varchar" MaxLength="1" />
+          <Property Name="PRG_AREA" Type="varchar" MaxLength="32" />
+          <Property Name="MVC_CTRL" Type="varchar" MaxLength="32" />
+          <Property Name="MVC_ACT" Type="varchar" MaxLength="32" />
+          <Property Name="ENT_POINT" Type="varchar" MaxLength="128" />
+          <Property Name="PARAM_VAL" Type="nvarchar" MaxLength="128" />
+          <Property Name="ORDERNUM" Type="int" Nullable="false" />
+          <Property Name="IS_MENU" Type="varchar" MaxLength="1" />
+          <Property Name="UP_DIRNO" Type="varchar" MaxLength="8" />
+          <Property Name="ENABLED" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="SYSPROFILE">
+          <Key>
+            <PropertyRef Name="USER_NO" />
+            <PropertyRef Name="PRG_AREA" />
+            <PropertyRef Name="MVC_CTRL" />
+            <PropertyRef Name="PF_KEY" />
+          </Key>
+          <Property Name="USER_NO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="PRG_AREA" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="MVC_CTRL" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="PF_KEY" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="PF_VALUE" Type="nvarchar" MaxLength="4000" />
+          <Property Name="MOD_UTC" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SYSROLE">
+          <Key>
+            <PropertyRef Name="ROLE_NO" />
+          </Key>
+          <Property Name="ROLE_NO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="ROLE_NAME" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="SYSROLE_FUN">
+          <Key>
+            <PropertyRef Name="ROLE_NO" />
+            <PropertyRef Name="PRG_NO" />
+          </Key>
+          <Property Name="ROLE_NO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="PRG_NO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="ENABLED" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="SYSROLE_USERS">
+          <Key>
+            <PropertyRef Name="ROLE_NO" />
+            <PropertyRef Name="USER_NO" />
+          </Key>
+          <Property Name="ROLE_NO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="USER_NO" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYSUSER">
+          <Key>
+            <PropertyRef Name="USER_NO" />
+          </Key>
+          <Property Name="USER_NO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="LOGIN_ID" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="USER_PWD" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="USER_NAME" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="EMAIL_ADR" Type="varchar" MaxLength="64" />
+          <Property Name="COMP_NO" Type="varchar" MaxLength="4" />
+          <Property Name="DEP_NO" Type="varchar" MaxLength="8" />
+          <Property Name="REF_CODE" Type="varchar" MaxLength="32" />
+          <Property Name="USER_CULTURE" Type="varchar" MaxLength="8" />
+          <Property Name="USER_TIMEZONE" Type="varchar" MaxLength="32" />
+          <Property Name="LOGIN_PROVIDER" Type="int" />
+        </EntityType>
+        <EntityType Name="SYSUSER_EVNTLOG">
+          <Key>
+            <PropertyRef Name="EVNT_ID" />
+          </Key>
+          <Property Name="EVNT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_NO" Type="varchar" MaxLength="8" />
+          <Property Name="PRG_AREA" Type="varchar" MaxLength="32" />
+          <Property Name="MVC_CTRL" Type="varchar" MaxLength="32" />
+          <Property Name="MVC_ACT" Type="varchar" MaxLength="32" />
+          <Property Name="DESCTXT" Type="nvarchar" MaxLength="256" />
+          <Property Name="CRT_UTC" Type="datetime" />
+          <Property Name="HOST_IPADDR" Type="varchar" MaxLength="32" />
+          <Property Name="POST_DATA" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'PrudenceERP-DEV.dbo.期初-入倉單' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="期初-入倉單">
+          <Property Name="GDSTYPE_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="REC_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECIN_UTC" Type="nvarchar" MaxLength="255" />
+          <Property Name="REC_SPMRK" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISPATCH" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISPATCH_CON" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECEIVING" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECEIVING_CON" Type="nvarchar" MaxLength="255" />
+          <Property Name="DEST_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="GOODS_NAME" Type="nvarchar" MaxLength="2048" />
+          <Property Name="QTY" Type="float" />
+          <Property Name="QTY_WEIGHT" Type="float" />
+          <Property Name="QTY_VOLUME" Type="float" />
+          <Property Name="QTY_NUMBER" Type="float" />
+          <Property Name="HASCHECK" Type="nvarchar" MaxLength="255" />
+          <Property Name="REC_NOTE" Type="nvarchar" MaxLength="255" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="2048" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="8" />
+        </EntityType>-->
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'PrudenceERP-DEV.dbo.期初-入倉單2' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="期初-入倉單2">
+          <Property Name="GDSTYPE_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="REC_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECIN_UTC" Type="datetime" />
+          <Property Name="REC_SPMRK" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISPATCH" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISPATCH_CON" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECEIVING" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECEIVING_CON" Type="nvarchar" MaxLength="255" />
+          <Property Name="DEST_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="GOODS_NAME" Type="nvarchar" MaxLength="2048" />
+          <Property Name="QTY" Type="int" />
+          <Property Name="QTY_WEIGHT" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="QTY_VOLUME" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="QTY_NUMBER" Type="int" />
+          <Property Name="HASCHECK" Type="nvarchar" MaxLength="255" />
+          <Property Name="REC_NOTE" Type="nvarchar" MaxLength="255" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="2048" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="8" />
+        </EntityType>-->
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'PrudenceERP-DEV.dbo.期初-入倉單-義烏' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="期初-入倉單-義烏">
+          <Property Name="GDSTYPE_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="REC_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECIN_UTC" Type="nvarchar" MaxLength="255" />
+          <Property Name="REC_SPMRK" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISPATCH" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISPATCH_CON" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECEIVING" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECEIVING_CON" Type="nvarchar" MaxLength="255" />
+          <Property Name="DEST_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="GOODS_NAME" Type="nvarchar" MaxLength="2048" />
+          <Property Name="QTY" Type="float" />
+          <Property Name="QTY_WEIGHT" Type="float" />
+          <Property Name="QTY_VOLUME" Type="float" />
+          <Property Name="QTY_NUMBER" Type="float" />
+          <Property Name="HASCHECK" Type="nvarchar" MaxLength="255" />
+          <Property Name="REC_NOTE" Type="nvarchar" MaxLength="255" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="2048" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="8" />
+        </EntityType>-->
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'PrudenceERP-DEV.dbo.期初-裝櫃資料' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="期初-裝櫃資料">
+          <Property Name="REC_MNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="No" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTAINER_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="REC_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECIN_UTC" Type="nvarchar" MaxLength="255" />
+          <Property Name="REC_SPMRK" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISPATCH" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISPATCH_CON" Type="float" />
+          <Property Name="RECEIVING" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECEIVING_CON" Type="nvarchar" MaxLength="255" />
+          <Property Name="DEST_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="LOADING_UTC" Type="nvarchar" MaxLength="255" />
+          <Property Name="ETD_UTC" Type="nvarchar" MaxLength="255" />
+          <Property Name="ETA_UTC" Type="nvarchar" MaxLength="255" />
+          <Property Name="GOODS_NAME" Type="nvarchar" MaxLength="2048" />
+          <Property Name="QTY" Type="float" />
+          <Property Name="QTY_WEIGHT" Type="float" />
+          <Property Name="QTY_VOLUME" Type="float" />
+          <Property Name="QTY_NUMBER" Type="float" />
+          <Property Name="HASCHECK" Type="nvarchar" MaxLength="255" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="2048" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="8" />
+          <Property Name="REC_ID" Type="varchar" MaxLength="8" />
+          <Property Name="SPM_ID" Type="varchar" MaxLength="8" />
+        </EntityType>-->
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'PrudenceERP-DEV.dbo.廣州-入倉單' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="廣州-入倉單">
+          <Property Name="GDSTYPE_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="REC_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECIN_UTC" Type="datetime" />
+          <Property Name="REC_SPMRK" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISPATCH" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISPATCH_CON" Type="float" />
+          <Property Name="RECEIVING" Type="nvarchar" MaxLength="255" />
+          <Property Name="RECEIVING_CON" Type="nvarchar" MaxLength="255" />
+          <Property Name="DEST_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="GOODS_NAME" Type="nvarchar" MaxLength="2048" />
+          <Property Name="QTY" Type="float" />
+          <Property Name="QTY_WEIGHT" Type="float" />
+          <Property Name="QTY_VOLUME" Type="float" />
+          <Property Name="QTY_NUMBER" Type="float" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="2048" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="8" />
+        </EntityType>-->
+        <Association Name="FK_GRP_BS_G_RELATIONS_GRP_BS_C">
+          <End Role="GRP_BS_CONTAINERTYPE" Type="Self.GRP_BS_CONTAINERTYPE" Multiplicity="0..1" />
+          <End Role="GRP_BS_GOODSTYPE" Type="Self.GRP_BS_GOODSTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRP_BS_CONTAINERTYPE">
+              <PropertyRef Name="CNTYPE_ID" />
+            </Principal>
+            <Dependent Role="GRP_BS_GOODSTYPE">
+              <PropertyRef Name="CNTYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRPCONTA_RELATIONS_GRPCUST">
+          <End Role="GRPCUST" Type="Self.GRPCUST" Multiplicity="0..1" />
+          <End Role="GRPCONTACT" Type="Self.GRPCONTACT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRPCUST">
+              <PropertyRef Name="CUST_ID" />
+            </Principal>
+            <Dependent Role="GRPCONTACT">
+              <PropertyRef Name="CUST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRPMAD_RELATIONS_GRPMAH">
+          <End Role="GRPMAH" Type="Self.GRPMAH" Multiplicity="1" />
+          <End Role="GRPMAD" Type="Self.GRPMAD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRPMAH">
+              <PropertyRef Name="SPM_ID" />
+            </Principal>
+            <Dependent Role="GRPMAD">
+              <PropertyRef Name="SPM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRPMAH_I_RELATIONS_GRPFILES">
+          <End Role="GRPFILES" Type="Self.GRPFILES" Multiplicity="1" />
+          <End Role="GRPMAH_IMG" Type="Self.GRPMAH_IMG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRPFILES">
+              <PropertyRef Name="FILE_ID" />
+            </Principal>
+            <Dependent Role="GRPMAH_IMG">
+              <PropertyRef Name="FILE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRPMAH_I_RELATIONS_GRPMAH">
+          <End Role="GRPMAH" Type="Self.GRPMAH" Multiplicity="1" />
+          <End Role="GRPMAH_IMG" Type="Self.GRPMAH_IMG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRPMAH">
+              <PropertyRef Name="SPM_ID" />
+            </Principal>
+            <Dependent Role="GRPMAH_IMG">
+              <PropertyRef Name="SPM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRPMAH_RELATIONS_GRPMAH_C">
+          <End Role="GRPMAH_CO_STATUS" Type="Self.GRPMAH_CO_STATUS" Multiplicity="1" />
+          <End Role="GRPMAH" Type="Self.GRPMAH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRPMAH_CO_STATUS">
+              <PropertyRef Name="CURRENTSTATUS" />
+            </Principal>
+            <Dependent Role="GRPMAH">
+              <PropertyRef Name="CURRENTSTATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYSCODE_RELATIONS_SYSCKIND">
+          <End Role="SYSCKIND" Type="Self.SYSCKIND" Multiplicity="0..1" />
+          <End Role="SYSCODE" Type="Self.SYSCODE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSCKIND">
+              <PropertyRef Name="CKIND" />
+            </Principal>
+            <Dependent Role="SYSCODE">
+              <PropertyRef Name="CKIND" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYSROLE__SYSROLE_F_SYSPRG">
+          <End Role="SYSPRG" Type="Self.SYSPRG" Multiplicity="1" />
+          <End Role="SYSROLE_FUN" Type="Self.SYSROLE_FUN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSPRG">
+              <PropertyRef Name="PRG_NO" />
+            </Principal>
+            <Dependent Role="SYSROLE_FUN">
+              <PropertyRef Name="PRG_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYSROLE__SYSROLE_F_SYSROLE">
+          <End Role="SYSROLE" Type="Self.SYSROLE" Multiplicity="1" />
+          <End Role="SYSROLE_FUN" Type="Self.SYSROLE_FUN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSROLE">
+              <PropertyRef Name="ROLE_NO" />
+            </Principal>
+            <Dependent Role="SYSROLE_FUN">
+              <PropertyRef Name="ROLE_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYSROLE__SYSROLE_U_SYSROLE">
+          <End Role="SYSROLE" Type="Self.SYSROLE" Multiplicity="1" />
+          <End Role="SYSROLE_USERS" Type="Self.SYSROLE_USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSROLE">
+              <PropertyRef Name="ROLE_NO" />
+            </Principal>
+            <Dependent Role="SYSROLE_USERS">
+              <PropertyRef Name="ROLE_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYSROLE__SYSROLE_U_SYSUSER">
+          <End Role="SYSUSER" Type="Self.SYSUSER" Multiplicity="1" />
+          <End Role="SYSROLE_USERS" Type="Self.SYSROLE_USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUSER">
+              <PropertyRef Name="USER_NO" />
+            </Principal>
+            <Dependent Role="SYSROLE_USERS">
+              <PropertyRef Name="USER_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="BOOKS" EntityType="Self.BOOKS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRP_BS_CONTAINERTYPE" EntityType="Self.GRP_BS_CONTAINERTYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRP_BS_GOODSTYPE" EntityType="Self.GRP_BS_GOODSTYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRP_BS_NOTE" EntityType="Self.GRP_BS_NOTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRP_BS_SEQ" EntityType="Self.GRP_BS_SEQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRP_BS_SPMRK" EntityType="Self.GRP_BS_SPMRK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRP_BS_TAG" EntityType="Self.GRP_BS_TAG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRP_BS_WHE" EntityType="Self.GRP_BS_WHE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRPCONTACT" EntityType="Self.GRPCONTACT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRPCUST" EntityType="Self.GRPCUST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRPFILES" EntityType="Self.GRPFILES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRPMAD" EntityType="Self.GRPMAD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRPMAH" EntityType="Self.GRPMAH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRPMAH_CO_STATUS" EntityType="Self.GRPMAH_CO_STATUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRPMAH_IMG" EntityType="Self.GRPMAH_IMG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRPREC" EntityType="Self.GRPREC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRPREC_PRT" EntityType="Self.GRPREC_PRT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSCKIND" EntityType="Self.SYSCKIND" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSCODE" EntityType="Self.SYSCODE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSCOMP" EntityType="Self.SYSCOMP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSDEPT" EntityType="Self.SYSDEPT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSPACK" EntityType="Self.SYSPACK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSPRG" EntityType="Self.SYSPRG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSPROFILE" EntityType="Self.SYSPROFILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSROLE" EntityType="Self.SYSROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSROLE_FUN" EntityType="Self.SYSROLE_FUN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSROLE_USERS" EntityType="Self.SYSROLE_USERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSUSER" EntityType="Self.SYSUSER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSUSER_EVNTLOG" EntityType="Self.SYSUSER_EVNTLOG" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_GRP_BS_G_RELATIONS_GRP_BS_C" Association="Self.FK_GRP_BS_G_RELATIONS_GRP_BS_C">
+            <End Role="GRP_BS_CONTAINERTYPE" EntitySet="GRP_BS_CONTAINERTYPE" />
+            <End Role="GRP_BS_GOODSTYPE" EntitySet="GRP_BS_GOODSTYPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRPCONTA_RELATIONS_GRPCUST" Association="Self.FK_GRPCONTA_RELATIONS_GRPCUST">
+            <End Role="GRPCUST" EntitySet="GRPCUST" />
+            <End Role="GRPCONTACT" EntitySet="GRPCONTACT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRPMAD_RELATIONS_GRPMAH" Association="Self.FK_GRPMAD_RELATIONS_GRPMAH">
+            <End Role="GRPMAH" EntitySet="GRPMAH" />
+            <End Role="GRPMAD" EntitySet="GRPMAD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRPMAH_I_RELATIONS_GRPFILES" Association="Self.FK_GRPMAH_I_RELATIONS_GRPFILES">
+            <End Role="GRPFILES" EntitySet="GRPFILES" />
+            <End Role="GRPMAH_IMG" EntitySet="GRPMAH_IMG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRPMAH_I_RELATIONS_GRPMAH" Association="Self.FK_GRPMAH_I_RELATIONS_GRPMAH">
+            <End Role="GRPMAH" EntitySet="GRPMAH" />
+            <End Role="GRPMAH_IMG" EntitySet="GRPMAH_IMG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRPMAH_RELATIONS_GRPMAH_C" Association="Self.FK_GRPMAH_RELATIONS_GRPMAH_C">
+            <End Role="GRPMAH_CO_STATUS" EntitySet="GRPMAH_CO_STATUS" />
+            <End Role="GRPMAH" EntitySet="GRPMAH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYSCODE_RELATIONS_SYSCKIND" Association="Self.FK_SYSCODE_RELATIONS_SYSCKIND">
+            <End Role="SYSCKIND" EntitySet="SYSCKIND" />
+            <End Role="SYSCODE" EntitySet="SYSCODE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYSROLE__SYSROLE_F_SYSPRG" Association="Self.FK_SYSROLE__SYSROLE_F_SYSPRG">
+            <End Role="SYSPRG" EntitySet="SYSPRG" />
+            <End Role="SYSROLE_FUN" EntitySet="SYSROLE_FUN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYSROLE__SYSROLE_F_SYSROLE" Association="Self.FK_SYSROLE__SYSROLE_F_SYSROLE">
+            <End Role="SYSROLE" EntitySet="SYSROLE" />
+            <End Role="SYSROLE_FUN" EntitySet="SYSROLE_FUN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYSROLE__SYSROLE_U_SYSROLE" Association="Self.FK_SYSROLE__SYSROLE_U_SYSROLE">
+            <End Role="SYSROLE" EntitySet="SYSROLE" />
+            <End Role="SYSROLE_USERS" EntitySet="SYSROLE_USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYSROLE__SYSROLE_U_SYSUSER" Association="Self.FK_SYSROLE__SYSROLE_U_SYSUSER">
+            <End Role="SYSUSER" EntitySet="SYSUSER" />
+            <End Role="SYSROLE_USERS" EntitySet="SYSROLE_USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOOKS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BOOKNAME" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AUTHOR" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PUBLISH_UTC" Type="DateTime" Precision="3" />
+          <Property Name="VERSION_NUM" Type="Int32" />
+          <Property Name="LIST_PRICE" Type="Decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="GRP_BS_CONTAINERTYPE">
+          <Key>
+            <PropertyRef Name="CNTYPE_ID" />
+          </Key>
+          <Property Name="CNTYPE_ID" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNTYPE_NAME" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="DESCTXT" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ENABLED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GRP_BS_GOODSTYPE" Relationship="Self.FK_GRP_BS_G_RELATIONS_GRP_BS_C" FromRole="GRP_BS_CONTAINERTYPE" ToRole="GRP_BS_GOODSTYPE" />
+        </EntityType>
+        <EntityType Name="GRP_BS_GOODSTYPE">
+          <Key>
+            <PropertyRef Name="GDSTYPE_ID" />
+          </Key>
+          <Property Name="GDSTYPE_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNTYPE_ID" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="GDSTYPE_NAME" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="DESCTXT" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ENABLED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GRP_BS_CONTAINERTYPE" Relationship="Self.FK_GRP_BS_G_RELATIONS_GRP_BS_C" FromRole="GRP_BS_GOODSTYPE" ToRole="GRP_BS_CONTAINERTYPE" />
+        </EntityType>
+        <EntityType Name="GRP_BS_NOTE">
+          <Key>
+            <PropertyRef Name="NOTE_ID" />
+          </Key>
+          <Property Name="NOTE_ID" Type="Int32" Nullable="false" />
+          <Property Name="DESCTXT" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="TABLE_NA" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="PK_STR1" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_DEPT" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_USER" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_UTC" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GRP_BS_SEQ">
+          <Key>
+            <PropertyRef Name="TABLE_NA" />
+            <PropertyRef Name="PK_YYYY" />
+            <PropertyRef Name="PK_MM" />
+            <PropertyRef Name="PK_DD" />
+            <PropertyRef Name="PK_STR1" />
+          </Key>
+          <Property Name="TABLE_NA" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PK_YYYY" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PK_MM" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PK_DD" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PK_STR1" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CURRENT_SEQ" Type="Int16" />
+          <Property Name="MOD_UTC" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GRP_BS_SPMRK">
+          <Key>
+            <PropertyRef Name="SEQ_NUM" />
+          </Key>
+          <Property Name="SEQ_NUM" Type="Int16" Nullable="false" />
+          <Property Name="REC_SPMRK" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GRP_BS_TAG">
+          <Key>
+            <PropertyRef Name="TAG_ID" />
+          </Key>
+          <Property Name="TAG_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TAG_TITLE" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="TAG_COLOR" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="COMP_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="DEP_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="WHE_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GRP_BS_WHE">
+          <Key>
+            <PropertyRef Name="WHE_NO" />
+          </Key>
+          <Property Name="WHE_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WHE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="COMP_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="DEP_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="ID_PREFIX" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GRPCONTACT">
+          <Key>
+            <PropertyRef Name="CONT_ID" />
+          </Key>
+          <Property Name="CONT_ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUST_ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CONT_NAME" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE_NUM" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GRPCUST" Relationship="Self.FK_GRPCONTA_RELATIONS_GRPCUST" FromRole="GRPCONTACT" ToRole="GRPCUST" />
+        </EntityType>
+        <EntityType Name="GRPCUST">
+          <Key>
+            <PropertyRef Name="CUST_ID" />
+          </Key>
+          <Property Name="CUST_ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUST_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_NAME" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE_NUM" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GRPCONTACT" Relationship="Self.FK_GRPCONTA_RELATIONS_GRPCUST" FromRole="GRPCUST" ToRole="GRPCONTACT" />
+        </EntityType>
+        <EntityType Name="GRPFILES">
+          <Key>
+            <PropertyRef Name="FILE_ID" />
+          </Key>
+          <Property Name="FILE_ID" Type="Int32" Nullable="false" />
+          <Property Name="FILE_NAME" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="FILE_TYPE" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="FILE_SIZE" Type="Int32" />
+          <Property Name="FILE_CONTENT" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CRT_UTC" Type="DateTime" Precision="3" />
+          <Property Name="CRT_DEPT" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_USER" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GRPMAH" Relationship="Self.GRPMAH_IMG" FromRole="GRPFILES" ToRole="GRPMAH" />
+        </EntityType>
+        <EntityType Name="GRPMAD">
+          <Key>
+            <PropertyRef Name="SPM_ID" />
+            <PropertyRef Name="ITEM_NO" />
+          </Key>
+          <Property Name="SPM_ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ITEM_NO" Type="Int32" Nullable="false" />
+          <Property Name="REC_ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEL_CODE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_UTC" Type="DateTime" Precision="3" />
+          <Property Name="CRT_DEPT" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_USER" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MOD_UTC" Type="DateTime" Precision="3" />
+          <Property Name="MOD_DEPT" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MOD_USER" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GRPMAH" Relationship="Self.FK_GRPMAD_RELATIONS_GRPMAH" FromRole="GRPMAD" ToRole="GRPMAH" />
+        </EntityType>
+        <EntityType Name="GRPMAH">
+          <Key>
+            <PropertyRef Name="SPM_ID" />
+          </Key>
+          <Property Name="SPM_ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CURRENTSTATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTAINER_NO" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="SERAL_NO" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="LOADING_UTC" Type="DateTime" Precision="3" />
+          <Property Name="SIZE" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="CARRIER" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="VESSEL" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="VOY" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="LOC_ID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="LOC_NAME" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="HEAD_NO" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="FORWARDER" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CLS_UTC" Type="DateTime" Precision="3" />
+          <Property Name="CLOSE_PORT" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="ETD_UTC" Type="DateTime" Precision="3" />
+          <Property Name="ETA_UTC" Type="DateTime" Precision="3" />
+          <Property Name="ARRIVAL_PORT" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="REMARK" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="SEPARATE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="COMP_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="WHE_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_UTC" Type="DateTime" Precision="3" />
+          <Property Name="CRT_DEPT" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_USER" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MOD_UTC" Type="DateTime" Precision="3" />
+          <Property Name="MOD_DEPT" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MOD_USER" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CNTYPE_ID" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="DEL_CODE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DEL_NOTE_ID" Type="Int32" />
+          <NavigationProperty Name="GRPMAD" Relationship="Self.FK_GRPMAD_RELATIONS_GRPMAH" FromRole="GRPMAH" ToRole="GRPMAD" />
+          <NavigationProperty Name="GRPMAH_CO_STATUS" Relationship="Self.FK_GRPMAH_RELATIONS_GRPMAH_C" FromRole="GRPMAH" ToRole="GRPMAH_CO_STATUS" />
+          <NavigationProperty Name="GRPFILES" Relationship="Self.GRPMAH_IMG" FromRole="GRPMAH" ToRole="GRPFILES" />
+        </EntityType>
+        <EntityType Name="GRPMAH_CO_STATUS">
+          <Key>
+            <PropertyRef Name="CURRENTSTATUS" />
+          </Key>
+          <Property Name="CURRENTSTATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STATUS_NAME" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="DESCTXT" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GRPMAH" Relationship="Self.FK_GRPMAH_RELATIONS_GRPMAH_C" FromRole="GRPMAH_CO_STATUS" ToRole="GRPMAH" />
+        </EntityType>
+        <EntityType Name="GRPREC">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_MNO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="RECIN_UTC" Type="DateTime" Precision="3" />
+          <Property Name="REC_NO" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="REC_SPMRK" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DISPATCH" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DISPATCH_CON" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="RECEIVING_NO" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="RECEIVING" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="RECEIVING_CON" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DEST_NAME" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="GOODS_NAME" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="QTY" Type="Int32" />
+          <Property Name="QTY_WEIGHT" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="QTY_VOLUME" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="QTY_NUMBER" Type="Int32" />
+          <Property Name="UNITPRICE" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LINETOTAL" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="REC_NOTE" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="REMARK" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="COMP_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="WHE_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="SPM_ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_UTC" Type="DateTime" Precision="3" />
+          <Property Name="CRT_DEPT" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_USER" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MOD_UTC" Type="DateTime" Precision="3" />
+          <Property Name="MOD_DEPT" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MOD_USER" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="GDSTYPE_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="DEL_CODE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DEL_NOTE_ID" Type="Int32" />
+          <Property Name="ISOVERLOAD" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="HASCHECK" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="TAG_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GRPREC_PRT">
+          <Key>
+            <PropertyRef Name="CRT_UTC" />
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="CRT_UTC" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="REC_ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="START_NUM" Type="Int32" />
+          <Property Name="END_NUM" Type="Int32" />
+          <Property Name="IS_PRINT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_USER" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MOD_UTC" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SYSCKIND">
+          <Key>
+            <PropertyRef Name="CKIND" />
+          </Key>
+          <Property Name="CKIND" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCTXT" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYSCODE" Relationship="Self.FK_SYSCODE_RELATIONS_SYSCKIND" FromRole="SYSCKIND" ToRole="SYSCODE" />
+        </EntityType>
+        <EntityType Name="SYSCODE">
+          <Key>
+            <PropertyRef Name="CODE_ID" />
+          </Key>
+          <Property Name="CODE_ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CKIND" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="CODE_NO" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_NAME" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DESCTXT" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ENABLED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ORDERNUM" Type="Int32" />
+          <Property Name="COMP_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="DEP_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DEL_CODE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SYSCKIND" Relationship="Self.FK_SYSCODE_RELATIONS_SYSCKIND" FromRole="SYSCODE" ToRole="SYSCKIND" />
+        </EntityType>
+        <EntityType Name="SYSCOMP">
+          <Key>
+            <PropertyRef Name="COMP_NO" />
+          </Key>
+          <Property Name="COMP_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COMP_NAME" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="REF_CODE" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SYSDEPT">
+          <Key>
+            <PropertyRef Name="DEP_NO" />
+          </Key>
+          <Property Name="DEP_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEP_NAME" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UP_DEPNO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COMP_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REF_CODE" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SYSPACK">
+          <Key>
+            <PropertyRef Name="PRG_AREA" />
+          </Key>
+          <Property Name="PRG_AREA" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PACK_NAME" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="MVC_CTRL" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="MVC_ACT" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="DESCTXT" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SYSPRG">
+          <Key>
+            <PropertyRef Name="PRG_NO" />
+          </Key>
+          <Property Name="PRG_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRG_NAME" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PRG_TYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PRG_AREA" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="MVC_CTRL" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="MVC_ACT" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ENT_POINT" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PARAM_VAL" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ORDERNUM" Type="Int32" Nullable="false" />
+          <Property Name="IS_MENU" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="UP_DIRNO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="ENABLED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SYSROLE_FUN" Relationship="Self.FK_SYSROLE__SYSROLE_F_SYSPRG" FromRole="SYSPRG" ToRole="SYSROLE_FUN" />
+        </EntityType>
+        <EntityType Name="SYSPROFILE">
+          <Key>
+            <PropertyRef Name="USER_NO" />
+            <PropertyRef Name="PRG_AREA" />
+            <PropertyRef Name="MVC_CTRL" />
+            <PropertyRef Name="PF_KEY" />
+          </Key>
+          <Property Name="USER_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRG_AREA" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MVC_CTRL" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PF_KEY" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PF_VALUE" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="MOD_UTC" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SYSROLE">
+          <Key>
+            <PropertyRef Name="ROLE_NO" />
+          </Key>
+          <Property Name="ROLE_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROLE_NAME" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYSROLE_FUN" Relationship="Self.FK_SYSROLE__SYSROLE_F_SYSROLE" FromRole="SYSROLE" ToRole="SYSROLE_FUN" />
+          <NavigationProperty Name="SYSUSER" Relationship="Self.SYSROLE_USERS" FromRole="SYSROLE" ToRole="SYSUSER" />
+        </EntityType>
+        <EntityType Name="SYSROLE_FUN">
+          <Key>
+            <PropertyRef Name="ROLE_NO" />
+            <PropertyRef Name="PRG_NO" />
+          </Key>
+          <Property Name="ROLE_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRG_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ENABLED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SYSPRG" Relationship="Self.FK_SYSROLE__SYSROLE_F_SYSPRG" FromRole="SYSROLE_FUN" ToRole="SYSPRG" />
+          <NavigationProperty Name="SYSROLE" Relationship="Self.FK_SYSROLE__SYSROLE_F_SYSROLE" FromRole="SYSROLE_FUN" ToRole="SYSROLE" />
+        </EntityType>
+        <EntityType Name="SYSUSER">
+          <Key>
+            <PropertyRef Name="USER_NO" />
+          </Key>
+          <Property Name="USER_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOGIN_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_PWD" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_NAME" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMAIL_ADR" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="COMP_NO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="DEP_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="REF_CODE" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="USER_CULTURE" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="USER_TIMEZONE" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LOGIN_PROVIDER" Type="Int32" />
+          <NavigationProperty Name="SYSROLE" Relationship="Self.SYSROLE_USERS" FromRole="SYSUSER" ToRole="SYSROLE" />
+        </EntityType>
+        <EntityType Name="SYSUSER_EVNTLOG">
+          <Key>
+            <PropertyRef Name="EVNT_ID" />
+          </Key>
+          <Property Name="EVNT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_NO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="PRG_AREA" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="MVC_CTRL" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="MVC_ACT" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="DESCTXT" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CRT_UTC" Type="DateTime" Precision="3" />
+          <Property Name="HOST_IPADDR" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="POST_DATA" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_GRP_BS_G_RELATIONS_GRP_BS_C">
+          <End Role="GRP_BS_CONTAINERTYPE" Type="Self.GRP_BS_CONTAINERTYPE" Multiplicity="0..1" />
+          <End Role="GRP_BS_GOODSTYPE" Type="Self.GRP_BS_GOODSTYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRP_BS_CONTAINERTYPE">
+              <PropertyRef Name="CNTYPE_ID" />
+            </Principal>
+            <Dependent Role="GRP_BS_GOODSTYPE">
+              <PropertyRef Name="CNTYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRPCONTA_RELATIONS_GRPCUST">
+          <End Role="GRPCUST" Type="Self.GRPCUST" Multiplicity="0..1" />
+          <End Role="GRPCONTACT" Type="Self.GRPCONTACT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRPCUST">
+              <PropertyRef Name="CUST_ID" />
+            </Principal>
+            <Dependent Role="GRPCONTACT">
+              <PropertyRef Name="CUST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRPMAD_RELATIONS_GRPMAH">
+          <End Role="GRPMAH" Type="Self.GRPMAH" Multiplicity="1" />
+          <End Role="GRPMAD" Type="Self.GRPMAD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRPMAH">
+              <PropertyRef Name="SPM_ID" />
+            </Principal>
+            <Dependent Role="GRPMAD">
+              <PropertyRef Name="SPM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRPMAH_RELATIONS_GRPMAH_C">
+          <End Role="GRPMAH_CO_STATUS" Type="Self.GRPMAH_CO_STATUS" Multiplicity="1" />
+          <End Role="GRPMAH" Type="Self.GRPMAH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRPMAH_CO_STATUS">
+              <PropertyRef Name="CURRENTSTATUS" />
+            </Principal>
+            <Dependent Role="GRPMAH">
+              <PropertyRef Name="CURRENTSTATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYSCODE_RELATIONS_SYSCKIND">
+          <End Role="SYSCKIND" Type="Self.SYSCKIND" Multiplicity="0..1" />
+          <End Role="SYSCODE" Type="Self.SYSCODE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSCKIND">
+              <PropertyRef Name="CKIND" />
+            </Principal>
+            <Dependent Role="SYSCODE">
+              <PropertyRef Name="CKIND" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYSROLE__SYSROLE_F_SYSPRG">
+          <End Role="SYSPRG" Type="Self.SYSPRG" Multiplicity="1" />
+          <End Role="SYSROLE_FUN" Type="Self.SYSROLE_FUN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSPRG">
+              <PropertyRef Name="PRG_NO" />
+            </Principal>
+            <Dependent Role="SYSROLE_FUN">
+              <PropertyRef Name="PRG_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYSROLE__SYSROLE_F_SYSROLE">
+          <End Role="SYSROLE" Type="Self.SYSROLE" Multiplicity="1" />
+          <End Role="SYSROLE_FUN" Type="Self.SYSROLE_FUN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSROLE">
+              <PropertyRef Name="ROLE_NO" />
+            </Principal>
+            <Dependent Role="SYSROLE_FUN">
+              <PropertyRef Name="ROLE_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GRPMAH_IMG">
+          <End Role="GRPFILES" Type="Self.GRPFILES" Multiplicity="*" />
+          <End Role="GRPMAH" Type="Self.GRPMAH" Multiplicity="*" />
+        </Association>
+        <Association Name="SYSROLE_USERS">
+          <End Role="SYSROLE" Type="Self.SYSROLE" Multiplicity="*" />
+          <End Role="SYSUSER" Type="Self.SYSUSER" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOOKS" EntityType="Self.BOOKS" />
+          <EntitySet Name="GRP_BS_CONTAINERTYPE" EntityType="Self.GRP_BS_CONTAINERTYPE" />
+          <EntitySet Name="GRP_BS_GOODSTYPE" EntityType="Self.GRP_BS_GOODSTYPE" />
+          <EntitySet Name="GRP_BS_NOTE" EntityType="Self.GRP_BS_NOTE" />
+          <EntitySet Name="GRP_BS_SEQ" EntityType="Self.GRP_BS_SEQ" />
+          <EntitySet Name="GRP_BS_SPMRK" EntityType="Self.GRP_BS_SPMRK" />
+          <EntitySet Name="GRP_BS_TAG" EntityType="Self.GRP_BS_TAG" />
+          <EntitySet Name="GRP_BS_WHE" EntityType="Self.GRP_BS_WHE" />
+          <EntitySet Name="GRPCONTACT" EntityType="Self.GRPCONTACT" />
+          <EntitySet Name="GRPCUST" EntityType="Self.GRPCUST" />
+          <EntitySet Name="GRPFILES" EntityType="Self.GRPFILES" />
+          <EntitySet Name="GRPMAD" EntityType="Self.GRPMAD" />
+          <EntitySet Name="GRPMAH" EntityType="Self.GRPMAH" />
+          <EntitySet Name="GRPMAH_CO_STATUS" EntityType="Self.GRPMAH_CO_STATUS" />
+          <EntitySet Name="GRPREC" EntityType="Self.GRPREC" />
+          <EntitySet Name="GRPREC_PRT" EntityType="Self.GRPREC_PRT" />
+          <EntitySet Name="SYSCKIND" EntityType="Self.SYSCKIND" />
+          <EntitySet Name="SYSCODE" EntityType="Self.SYSCODE" />
+          <EntitySet Name="SYSCOMP" EntityType="Self.SYSCOMP" />
+          <EntitySet Name="SYSDEPT" EntityType="Self.SYSDEPT" />
+          <EntitySet Name="SYSPACK" EntityType="Self.SYSPACK" />
+          <EntitySet Name="SYSPRG" EntityType="Self.SYSPRG" />
+          <EntitySet Name="SYSPROFILE" EntityType="Self.SYSPROFILE" />
+          <EntitySet Name="SYSROLE" EntityType="Self.SYSROLE" />
+          <EntitySet Name="SYSROLE_FUN" EntityType="Self.SYSROLE_FUN" />
+          <EntitySet Name="SYSUSER" EntityType="Self.SYSUSER" />
+          <EntitySet Name="SYSUSER_EVNTLOG" EntityType="Self.SYSUSER_EVNTLOG" />
+          <AssociationSet Name="FK_GRP_BS_G_RELATIONS_GRP_BS_C" Association="Self.FK_GRP_BS_G_RELATIONS_GRP_BS_C">
+            <End Role="GRP_BS_CONTAINERTYPE" EntitySet="GRP_BS_CONTAINERTYPE" />
+            <End Role="GRP_BS_GOODSTYPE" EntitySet="GRP_BS_GOODSTYPE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRPCONTA_RELATIONS_GRPCUST" Association="Self.FK_GRPCONTA_RELATIONS_GRPCUST">
+            <End Role="GRPCUST" EntitySet="GRPCUST" />
+            <End Role="GRPCONTACT" EntitySet="GRPCONTACT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRPMAD_RELATIONS_GRPMAH" Association="Self.FK_GRPMAD_RELATIONS_GRPMAH">
+            <End Role="GRPMAH" EntitySet="GRPMAH" />
+            <End Role="GRPMAD" EntitySet="GRPMAD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRPMAH_RELATIONS_GRPMAH_C" Association="Self.FK_GRPMAH_RELATIONS_GRPMAH_C">
+            <End Role="GRPMAH_CO_STATUS" EntitySet="GRPMAH_CO_STATUS" />
+            <End Role="GRPMAH" EntitySet="GRPMAH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYSCODE_RELATIONS_SYSCKIND" Association="Self.FK_SYSCODE_RELATIONS_SYSCKIND">
+            <End Role="SYSCKIND" EntitySet="SYSCKIND" />
+            <End Role="SYSCODE" EntitySet="SYSCODE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYSROLE__SYSROLE_F_SYSPRG" Association="Self.FK_SYSROLE__SYSROLE_F_SYSPRG">
+            <End Role="SYSPRG" EntitySet="SYSPRG" />
+            <End Role="SYSROLE_FUN" EntitySet="SYSROLE_FUN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYSROLE__SYSROLE_F_SYSROLE" Association="Self.FK_SYSROLE__SYSROLE_F_SYSROLE">
+            <End Role="SYSROLE" EntitySet="SYSROLE" />
+            <End Role="SYSROLE_FUN" EntitySet="SYSROLE_FUN" />
+          </AssociationSet>
+          <AssociationSet Name="GRPMAH_IMG" Association="Self.GRPMAH_IMG">
+            <End Role="GRPFILES" EntitySet="GRPFILES" />
+            <End Role="GRPMAH" EntitySet="GRPMAH" />
+          </AssociationSet>
+          <AssociationSet Name="SYSROLE_USERS" Association="Self.SYSROLE_USERS">
+            <End Role="SYSROLE" EntitySet="SYSROLE" />
+            <End Role="SYSUSER" EntitySet="SYSUSER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="BOOKS">
+            <EntityTypeMapping TypeName="Model.BOOKS">
+              <MappingFragment StoreEntitySet="BOOKS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BOOKNAME" ColumnName="BOOKNAME" />
+                <ScalarProperty Name="AUTHOR" ColumnName="AUTHOR" />
+                <ScalarProperty Name="PUBLISH_UTC" ColumnName="PUBLISH_UTC" />
+                <ScalarProperty Name="VERSION_NUM" ColumnName="VERSION_NUM" />
+                <ScalarProperty Name="LIST_PRICE" ColumnName="LIST_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRP_BS_CONTAINERTYPE">
+            <EntityTypeMapping TypeName="Model.GRP_BS_CONTAINERTYPE">
+              <MappingFragment StoreEntitySet="GRP_BS_CONTAINERTYPE">
+                <ScalarProperty Name="CNTYPE_ID" ColumnName="CNTYPE_ID" />
+                <ScalarProperty Name="CNTYPE_NAME" ColumnName="CNTYPE_NAME" />
+                <ScalarProperty Name="DESCTXT" ColumnName="DESCTXT" />
+                <ScalarProperty Name="ENABLED" ColumnName="ENABLED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRP_BS_GOODSTYPE">
+            <EntityTypeMapping TypeName="Model.GRP_BS_GOODSTYPE">
+              <MappingFragment StoreEntitySet="GRP_BS_GOODSTYPE">
+                <ScalarProperty Name="GDSTYPE_ID" ColumnName="GDSTYPE_ID" />
+                <ScalarProperty Name="CNTYPE_ID" ColumnName="CNTYPE_ID" />
+                <ScalarProperty Name="GDSTYPE_NAME" ColumnName="GDSTYPE_NAME" />
+                <ScalarProperty Name="DESCTXT" ColumnName="DESCTXT" />
+                <ScalarProperty Name="ENABLED" ColumnName="ENABLED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRP_BS_NOTE">
+            <EntityTypeMapping TypeName="Model.GRP_BS_NOTE">
+              <MappingFragment StoreEntitySet="GRP_BS_NOTE">
+                <ScalarProperty Name="NOTE_ID" ColumnName="NOTE_ID" />
+                <ScalarProperty Name="DESCTXT" ColumnName="DESCTXT" />
+                <ScalarProperty Name="TABLE_NA" ColumnName="TABLE_NA" />
+                <ScalarProperty Name="PK_STR1" ColumnName="PK_STR1" />
+                <ScalarProperty Name="CRT_DEPT" ColumnName="CRT_DEPT" />
+                <ScalarProperty Name="CRT_USER" ColumnName="CRT_USER" />
+                <ScalarProperty Name="CRT_UTC" ColumnName="CRT_UTC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRP_BS_SEQ">
+            <EntityTypeMapping TypeName="Model.GRP_BS_SEQ">
+              <MappingFragment StoreEntitySet="GRP_BS_SEQ">
+                <ScalarProperty Name="TABLE_NA" ColumnName="TABLE_NA" />
+                <ScalarProperty Name="PK_YYYY" ColumnName="PK_YYYY" />
+                <ScalarProperty Name="PK_MM" ColumnName="PK_MM" />
+                <ScalarProperty Name="PK_DD" ColumnName="PK_DD" />
+                <ScalarProperty Name="PK_STR1" ColumnName="PK_STR1" />
+                <ScalarProperty Name="CURRENT_SEQ" ColumnName="CURRENT_SEQ" />
+                <ScalarProperty Name="MOD_UTC" ColumnName="MOD_UTC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRP_BS_SPMRK">
+            <EntityTypeMapping TypeName="Model.GRP_BS_SPMRK">
+              <MappingFragment StoreEntitySet="GRP_BS_SPMRK">
+                <ScalarProperty Name="SEQ_NUM" ColumnName="SEQ_NUM" />
+                <ScalarProperty Name="REC_SPMRK" ColumnName="REC_SPMRK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRP_BS_TAG">
+            <EntityTypeMapping TypeName="Model.GRP_BS_TAG">
+              <MappingFragment StoreEntitySet="GRP_BS_TAG">
+                <ScalarProperty Name="TAG_ID" ColumnName="TAG_ID" />
+                <ScalarProperty Name="TAG_TITLE" ColumnName="TAG_TITLE" />
+                <ScalarProperty Name="TAG_COLOR" ColumnName="TAG_COLOR" />
+                <ScalarProperty Name="COMP_NO" ColumnName="COMP_NO" />
+                <ScalarProperty Name="DEP_NO" ColumnName="DEP_NO" />
+                <ScalarProperty Name="WHE_NO" ColumnName="WHE_NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRP_BS_WHE">
+            <EntityTypeMapping TypeName="Model.GRP_BS_WHE">
+              <MappingFragment StoreEntitySet="GRP_BS_WHE">
+                <ScalarProperty Name="WHE_NO" ColumnName="WHE_NO" />
+                <ScalarProperty Name="WHE_NAME" ColumnName="WHE_NAME" />
+                <ScalarProperty Name="COMP_NO" ColumnName="COMP_NO" />
+                <ScalarProperty Name="DEP_NO" ColumnName="DEP_NO" />
+                <ScalarProperty Name="ID_PREFIX" ColumnName="ID_PREFIX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRPCONTACT">
+            <EntityTypeMapping TypeName="Model.GRPCONTACT">
+              <MappingFragment StoreEntitySet="GRPCONTACT">
+                <ScalarProperty Name="CONT_ID" ColumnName="CONT_ID" />
+                <ScalarProperty Name="CUST_ID" ColumnName="CUST_ID" />
+                <ScalarProperty Name="CONT_NAME" ColumnName="CONT_NAME" />
+                <ScalarProperty Name="PHONE_NUM" ColumnName="PHONE_NUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRPCUST">
+            <EntityTypeMapping TypeName="Model.GRPCUST">
+              <MappingFragment StoreEntitySet="GRPCUST">
+                <ScalarProperty Name="CUST_ID" ColumnName="CUST_ID" />
+                <ScalarProperty Name="CUST_NO" ColumnName="CUST_NO" />
+                <ScalarProperty Name="CUST_NAME" ColumnName="CUST_NAME" />
+                <ScalarProperty Name="PHONE_NUM" ColumnName="PHONE_NUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRPFILES">
+            <EntityTypeMapping TypeName="Model.GRPFILES">
+              <MappingFragment StoreEntitySet="GRPFILES">
+                <ScalarProperty Name="FILE_ID" ColumnName="FILE_ID" />
+                <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+                <ScalarProperty Name="FILE_TYPE" ColumnName="FILE_TYPE" />
+                <ScalarProperty Name="FILE_SIZE" ColumnName="FILE_SIZE" />
+                <ScalarProperty Name="FILE_CONTENT" ColumnName="FILE_CONTENT" />
+                <ScalarProperty Name="CRT_UTC" ColumnName="CRT_UTC" />
+                <ScalarProperty Name="CRT_DEPT" ColumnName="CRT_DEPT" />
+                <ScalarProperty Name="CRT_USER" ColumnName="CRT_USER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRPMAD">
+            <EntityTypeMapping TypeName="Model.GRPMAD">
+              <MappingFragment StoreEntitySet="GRPMAD">
+                <ScalarProperty Name="SPM_ID" ColumnName="SPM_ID" />
+                <ScalarProperty Name="ITEM_NO" ColumnName="ITEM_NO" />
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="DEL_CODE" ColumnName="DEL_CODE" />
+                <ScalarProperty Name="CRT_UTC" ColumnName="CRT_UTC" />
+                <ScalarProperty Name="CRT_DEPT" ColumnName="CRT_DEPT" />
+                <ScalarProperty Name="CRT_USER" ColumnName="CRT_USER" />
+                <ScalarProperty Name="MOD_UTC" ColumnName="MOD_UTC" />
+                <ScalarProperty Name="MOD_DEPT" ColumnName="MOD_DEPT" />
+                <ScalarProperty Name="MOD_USER" ColumnName="MOD_USER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRPMAH">
+            <EntityTypeMapping TypeName="Model.GRPMAH">
+              <MappingFragment StoreEntitySet="GRPMAH">
+                <ScalarProperty Name="SPM_ID" ColumnName="SPM_ID" />
+                <ScalarProperty Name="CURRENTSTATUS" ColumnName="CURRENTSTATUS" />
+                <ScalarProperty Name="CONTAINER_NO" ColumnName="CONTAINER_NO" />
+                <ScalarProperty Name="SERAL_NO" ColumnName="SERAL_NO" />
+                <ScalarProperty Name="LOADING_UTC" ColumnName="LOADING_UTC" />
+                <ScalarProperty Name="SIZE" ColumnName="SIZE" />
+                <ScalarProperty Name="CARRIER" ColumnName="CARRIER" />
+                <ScalarProperty Name="VESSEL" ColumnName="VESSEL" />
+                <ScalarProperty Name="VOY" ColumnName="VOY" />
+                <ScalarProperty Name="LOC_ID" ColumnName="LOC_ID" />
+                <ScalarProperty Name="LOC_NAME" ColumnName="LOC_NAME" />
+                <ScalarProperty Name="HEAD_NO" ColumnName="HEAD_NO" />
+                <ScalarProperty Name="FORWARDER" ColumnName="FORWARDER" />
+                <ScalarProperty Name="CLS_UTC" ColumnName="CLS_UTC" />
+                <ScalarProperty Name="CLOSE_PORT" ColumnName="CLOSE_PORT" />
+                <ScalarProperty Name="ETD_UTC" ColumnName="ETD_UTC" />
+                <ScalarProperty Name="ETA_UTC" ColumnName="ETA_UTC" />
+                <ScalarProperty Name="ARRIVAL_PORT" ColumnName="ARRIVAL_PORT" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="SEPARATE" ColumnName="SEPARATE" />
+                <ScalarProperty Name="COMP_NO" ColumnName="COMP_NO" />
+                <ScalarProperty Name="WHE_NO" ColumnName="WHE_NO" />
+                <ScalarProperty Name="CRT_UTC" ColumnName="CRT_UTC" />
+                <ScalarProperty Name="CRT_DEPT" ColumnName="CRT_DEPT" />
+                <ScalarProperty Name="CRT_USER" ColumnName="CRT_USER" />
+                <ScalarProperty Name="MOD_UTC" ColumnName="MOD_UTC" />
+                <ScalarProperty Name="MOD_DEPT" ColumnName="MOD_DEPT" />
+                <ScalarProperty Name="MOD_USER" ColumnName="MOD_USER" />
+                <ScalarProperty Name="CNTYPE_ID" ColumnName="CNTYPE_ID" />
+                <ScalarProperty Name="DEL_CODE" ColumnName="DEL_CODE" />
+                <ScalarProperty Name="DEL_NOTE_ID" ColumnName="DEL_NOTE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRPMAH_CO_STATUS">
+            <EntityTypeMapping TypeName="Model.GRPMAH_CO_STATUS">
+              <MappingFragment StoreEntitySet="GRPMAH_CO_STATUS">
+                <ScalarProperty Name="CURRENTSTATUS" ColumnName="CURRENTSTATUS" />
+                <ScalarProperty Name="STATUS_NAME" ColumnName="STATUS_NAME" />
+                <ScalarProperty Name="DESCTXT" ColumnName="DESCTXT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRPREC">
+            <EntityTypeMapping TypeName="Model.GRPREC">
+              <MappingFragment StoreEntitySet="GRPREC">
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="REC_MNO" ColumnName="REC_MNO" />
+                <ScalarProperty Name="RECIN_UTC" ColumnName="RECIN_UTC" />
+                <ScalarProperty Name="REC_NO" ColumnName="REC_NO" />
+                <ScalarProperty Name="REC_SPMRK" ColumnName="REC_SPMRK" />
+                <ScalarProperty Name="DISPATCH" ColumnName="DISPATCH" />
+                <ScalarProperty Name="DISPATCH_CON" ColumnName="DISPATCH_CON" />
+                <ScalarProperty Name="RECEIVING_NO" ColumnName="RECEIVING_NO" />
+                <ScalarProperty Name="RECEIVING" ColumnName="RECEIVING" />
+                <ScalarProperty Name="RECEIVING_CON" ColumnName="RECEIVING_CON" />
+                <ScalarProperty Name="DEST_NAME" ColumnName="DEST_NAME" />
+                <ScalarProperty Name="GOODS_NAME" ColumnName="GOODS_NAME" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="QTY_WEIGHT" ColumnName="QTY_WEIGHT" />
+                <ScalarProperty Name="QTY_VOLUME" ColumnName="QTY_VOLUME" />
+                <ScalarProperty Name="QTY_NUMBER" ColumnName="QTY_NUMBER" />
+                <ScalarProperty Name="UNITPRICE" ColumnName="UNITPRICE" />
+                <ScalarProperty Name="LINETOTAL" ColumnName="LINETOTAL" />
+                <ScalarProperty Name="REC_NOTE" ColumnName="REC_NOTE" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="COMP_NO" ColumnName="COMP_NO" />
+                <ScalarProperty Name="WHE_NO" ColumnName="WHE_NO" />
+                <ScalarProperty Name="SPM_ID" ColumnName="SPM_ID" />
+                <ScalarProperty Name="CRT_UTC" ColumnName="CRT_UTC" />
+                <ScalarProperty Name="CRT_DEPT" ColumnName="CRT_DEPT" />
+                <ScalarProperty Name="CRT_USER" ColumnName="CRT_USER" />
+                <ScalarProperty Name="MOD_UTC" ColumnName="MOD_UTC" />
+                <ScalarProperty Name="MOD_DEPT" ColumnName="MOD_DEPT" />
+                <ScalarProperty Name="MOD_USER" ColumnName="MOD_USER" />
+                <ScalarProperty Name="GDSTYPE_ID" ColumnName="GDSTYPE_ID" />
+                <ScalarProperty Name="DEL_CODE" ColumnName="DEL_CODE" />
+                <ScalarProperty Name="DEL_NOTE_ID" ColumnName="DEL_NOTE_ID" />
+                <ScalarProperty Name="ISOVERLOAD" ColumnName="ISOVERLOAD" />
+                <ScalarProperty Name="HASCHECK" ColumnName="HASCHECK" />
+                <ScalarProperty Name="TAG_ID" ColumnName="TAG_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRPREC_PRT">
+            <EntityTypeMapping TypeName="Model.GRPREC_PRT">
+              <MappingFragment StoreEntitySet="GRPREC_PRT">
+                <ScalarProperty Name="CRT_UTC" ColumnName="CRT_UTC" />
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="START_NUM" ColumnName="START_NUM" />
+                <ScalarProperty Name="END_NUM" ColumnName="END_NUM" />
+                <ScalarProperty Name="IS_PRINT" ColumnName="IS_PRINT" />
+                <ScalarProperty Name="CRT_USER" ColumnName="CRT_USER" />
+                <ScalarProperty Name="MOD_UTC" ColumnName="MOD_UTC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSCKIND">
+            <EntityTypeMapping TypeName="Model.SYSCKIND">
+              <MappingFragment StoreEntitySet="SYSCKIND">
+                <ScalarProperty Name="CKIND" ColumnName="CKIND" />
+                <ScalarProperty Name="DESCTXT" ColumnName="DESCTXT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSCODE">
+            <EntityTypeMapping TypeName="Model.SYSCODE">
+              <MappingFragment StoreEntitySet="SYSCODE">
+                <ScalarProperty Name="CODE_ID" ColumnName="CODE_ID" />
+                <ScalarProperty Name="CKIND" ColumnName="CKIND" />
+                <ScalarProperty Name="CODE_NO" ColumnName="CODE_NO" />
+                <ScalarProperty Name="CODE_NAME" ColumnName="CODE_NAME" />
+                <ScalarProperty Name="DESCTXT" ColumnName="DESCTXT" />
+                <ScalarProperty Name="ENABLED" ColumnName="ENABLED" />
+                <ScalarProperty Name="ORDERNUM" ColumnName="ORDERNUM" />
+                <ScalarProperty Name="COMP_NO" ColumnName="COMP_NO" />
+                <ScalarProperty Name="DEP_NO" ColumnName="DEP_NO" />
+                <ScalarProperty Name="DEL_CODE" ColumnName="DEL_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSCOMP">
+            <EntityTypeMapping TypeName="Model.SYSCOMP">
+              <MappingFragment StoreEntitySet="SYSCOMP">
+                <ScalarProperty Name="COMP_NO" ColumnName="COMP_NO" />
+                <ScalarProperty Name="COMP_NAME" ColumnName="COMP_NAME" />
+                <ScalarProperty Name="REF_CODE" ColumnName="REF_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSDEPT">
+            <EntityTypeMapping TypeName="Model.SYSDEPT">
+              <MappingFragment StoreEntitySet="SYSDEPT">
+                <ScalarProperty Name="DEP_NO" ColumnName="DEP_NO" />
+                <ScalarProperty Name="DEP_NAME" ColumnName="DEP_NAME" />
+                <ScalarProperty Name="UP_DEPNO" ColumnName="UP_DEPNO" />
+                <ScalarProperty Name="COMP_NO" ColumnName="COMP_NO" />
+                <ScalarProperty Name="REF_CODE" ColumnName="REF_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSPACK">
+            <EntityTypeMapping TypeName="Model.SYSPACK">
+              <MappingFragment StoreEntitySet="SYSPACK">
+                <ScalarProperty Name="PRG_AREA" ColumnName="PRG_AREA" />
+                <ScalarProperty Name="PACK_NAME" ColumnName="PACK_NAME" />
+                <ScalarProperty Name="MVC_CTRL" ColumnName="MVC_CTRL" />
+                <ScalarProperty Name="MVC_ACT" ColumnName="MVC_ACT" />
+                <ScalarProperty Name="DESCTXT" ColumnName="DESCTXT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSPRG">
+            <EntityTypeMapping TypeName="Model.SYSPRG">
+              <MappingFragment StoreEntitySet="SYSPRG">
+                <ScalarProperty Name="PRG_NO" ColumnName="PRG_NO" />
+                <ScalarProperty Name="PRG_NAME" ColumnName="PRG_NAME" />
+                <ScalarProperty Name="PRG_TYPE" ColumnName="PRG_TYPE" />
+                <ScalarProperty Name="PRG_AREA" ColumnName="PRG_AREA" />
+                <ScalarProperty Name="MVC_CTRL" ColumnName="MVC_CTRL" />
+                <ScalarProperty Name="MVC_ACT" ColumnName="MVC_ACT" />
+                <ScalarProperty Name="ENT_POINT" ColumnName="ENT_POINT" />
+                <ScalarProperty Name="PARAM_VAL" ColumnName="PARAM_VAL" />
+                <ScalarProperty Name="ORDERNUM" ColumnName="ORDERNUM" />
+                <ScalarProperty Name="IS_MENU" ColumnName="IS_MENU" />
+                <ScalarProperty Name="UP_DIRNO" ColumnName="UP_DIRNO" />
+                <ScalarProperty Name="ENABLED" ColumnName="ENABLED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSPROFILE">
+            <EntityTypeMapping TypeName="Model.SYSPROFILE">
+              <MappingFragment StoreEntitySet="SYSPROFILE">
+                <ScalarProperty Name="USER_NO" ColumnName="USER_NO" />
+                <ScalarProperty Name="PRG_AREA" ColumnName="PRG_AREA" />
+                <ScalarProperty Name="MVC_CTRL" ColumnName="MVC_CTRL" />
+                <ScalarProperty Name="PF_KEY" ColumnName="PF_KEY" />
+                <ScalarProperty Name="PF_VALUE" ColumnName="PF_VALUE" />
+                <ScalarProperty Name="MOD_UTC" ColumnName="MOD_UTC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSROLE">
+            <EntityTypeMapping TypeName="Model.SYSROLE">
+              <MappingFragment StoreEntitySet="SYSROLE">
+                <ScalarProperty Name="ROLE_NO" ColumnName="ROLE_NO" />
+                <ScalarProperty Name="ROLE_NAME" ColumnName="ROLE_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSROLE_FUN">
+            <EntityTypeMapping TypeName="Model.SYSROLE_FUN">
+              <MappingFragment StoreEntitySet="SYSROLE_FUN">
+                <ScalarProperty Name="ROLE_NO" ColumnName="ROLE_NO" />
+                <ScalarProperty Name="PRG_NO" ColumnName="PRG_NO" />
+                <ScalarProperty Name="ENABLED" ColumnName="ENABLED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSUSER">
+            <EntityTypeMapping TypeName="Model.SYSUSER">
+              <MappingFragment StoreEntitySet="SYSUSER">
+                <ScalarProperty Name="USER_NO" ColumnName="USER_NO" />
+                <ScalarProperty Name="LOGIN_ID" ColumnName="LOGIN_ID" />
+                <ScalarProperty Name="USER_PWD" ColumnName="USER_PWD" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="EMAIL_ADR" ColumnName="EMAIL_ADR" />
+                <ScalarProperty Name="COMP_NO" ColumnName="COMP_NO" />
+                <ScalarProperty Name="DEP_NO" ColumnName="DEP_NO" />
+                <ScalarProperty Name="REF_CODE" ColumnName="REF_CODE" />
+                <ScalarProperty Name="USER_CULTURE" ColumnName="USER_CULTURE" />
+                <ScalarProperty Name="USER_TIMEZONE" ColumnName="USER_TIMEZONE" />
+                <ScalarProperty Name="LOGIN_PROVIDER" ColumnName="LOGIN_PROVIDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSUSER_EVNTLOG">
+            <EntityTypeMapping TypeName="Model.SYSUSER_EVNTLOG">
+              <MappingFragment StoreEntitySet="SYSUSER_EVNTLOG">
+                <ScalarProperty Name="EVNT_ID" ColumnName="EVNT_ID" />
+                <ScalarProperty Name="USER_NO" ColumnName="USER_NO" />
+                <ScalarProperty Name="PRG_AREA" ColumnName="PRG_AREA" />
+                <ScalarProperty Name="MVC_CTRL" ColumnName="MVC_CTRL" />
+                <ScalarProperty Name="MVC_ACT" ColumnName="MVC_ACT" />
+                <ScalarProperty Name="DESCTXT" ColumnName="DESCTXT" />
+                <ScalarProperty Name="CRT_UTC" ColumnName="CRT_UTC" />
+                <ScalarProperty Name="HOST_IPADDR" ColumnName="HOST_IPADDR" />
+                <ScalarProperty Name="POST_DATA" ColumnName="POST_DATA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="GRPMAH_IMG" TypeName="Model.GRPMAH_IMG" StoreEntitySet="GRPMAH_IMG">
+            <EndProperty Name="GRPFILES">
+              <ScalarProperty Name="FILE_ID" ColumnName="FILE_ID" />
+            </EndProperty>
+            <EndProperty Name="GRPMAH">
+              <ScalarProperty Name="SPM_ID" ColumnName="SPM_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SYSROLE_USERS" TypeName="Model.SYSROLE_USERS" StoreEntitySet="SYSROLE_USERS">
+            <EndProperty Name="SYSROLE">
+              <ScalarProperty Name="ROLE_NO" ColumnName="ROLE_NO" />
+            </EndProperty>
+            <EndProperty Name="SYSUSER">
+              <ScalarProperty Name="USER_NO" ColumnName="USER_NO" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c8e319cbafc743b19d445790d8f0cd14" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.BOOKS" Width="1.5" PointX="12.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRP_BS_CONTAINERTYPE" Width="1.5" PointX="10.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRP_BS_GOODSTYPE" Width="1.5" PointX="13" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRP_BS_NOTE" Width="1.5" PointX="12.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRP_BS_SEQ" Width="1.5" PointX="5.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRP_BS_SPMRK" Width="1.5" PointX="5.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRP_BS_TAG" Width="1.5" PointX="7.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRP_BS_WHE" Width="1.5" PointX="9.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRPCONTACT" Width="1.5" PointX="8" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRPCUST" Width="1.5" PointX="5.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRPFILES" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRPMAD" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRPMAH" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRPMAH_CO_STATUS" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRPREC" Width="1.5" PointX="11.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRPREC_PRT" Width="1.5" PointX="13.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SYSCKIND" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SYSCODE" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SYSCOMP" Width="1.5" PointX="14.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SYSDEPT" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SYSPACK" Width="1.5" PointX="2.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SYSPRG" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SYSPROFILE" Width="1.5" PointX="14.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SYSROLE" Width="1.5" PointX="7.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SYSROLE_FUN" Width="1.5" PointX="10" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SYSUSER" Width="1.5" PointX="10" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SYSUSER_EVNTLOG" Width="1.5" PointX="15.75" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_GRP_BS_G_RELATIONS_GRP_BS_C" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_GRPCONTA_RELATIONS_GRPCUST" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_GRPMAD_RELATIONS_GRPMAH" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_GRPMAH_RELATIONS_GRPMAH_C" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SYSCODE_RELATIONS_SYSCKIND" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SYSROLE__SYSROLE_F_SYSPRG" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SYSROLE__SYSROLE_F_SYSROLE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.GRPMAH_IMG" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SYSROLE_USERS" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
