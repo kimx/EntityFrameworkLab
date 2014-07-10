@@ -223,26 +223,61 @@ namespace EntityFrameworkLab
     #endregion
 
     #region Log Test
+    //class Program
+    //{
+    //    static Entities prudenceERPEntities;
+    //    static void Main(string[] args)
+    //    {
+    //        prudenceERPEntities = new Entities();
+    //        LogDelegate();
+    //        Console.Read();
+
+    //    }
+
+    //    private static void LogDelegate()
+    //    {
+    //        prudenceERPEntities.Database.Log = (log) => Debug.WriteLine(log);
+    //        var list = prudenceERPEntities.BOOKS.ToList();
+    //    }
+    //}
+    #endregion
+
+    #region Cache Test
     class Program
     {
         static Entities prudenceERPEntities;
         static void Main(string[] args)
         {
             prudenceERPEntities = new Entities();
-            LogDelegate();
-            Console.Read();
+            prudenceERPEntities.Configuration.LazyLoadingEnabled = false;
+            prudenceERPEntities.Configuration.ProxyCreationEnabled = false;
+
+
+            //AsNoTracking 可以避免快取，但無法使用SaveChanges
+            var code = prudenceERPEntities.SYSCODE.Find("KIMZ0001");
+            Console.WriteLine(code.CODE_NO);
+            code.CODE_NO = "B";
+            int effect = prudenceERPEntities.SaveChanges();
+            //effect=0
+
+
+            Console.ReadLine();
+            var code2 = prudenceERPEntities.SYSCODE.SingleOrDefault(o => o.CODE_ID == "KIMZ0001");
+            Console.WriteLine(code2.CODE_NO);
+            Console.ReadLine();
+
+            var codes = prudenceERPEntities.SYSCODE.Where(o => o.CKIND == code.CKIND).ToList();
+            foreach (var item in codes)
+            {
+                Console.WriteLine(item.CODE_NO);
+            }
+            Console.ReadLine();
 
         }
 
-        private static void LogDelegate()
-        {
-            prudenceERPEntities.Database.Log = (log) => Debug.WriteLine(log);
-            var list = prudenceERPEntities.BOOKS.ToList();
-        }
+
     }
     #endregion
-
-
 
 
 }
